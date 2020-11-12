@@ -574,6 +574,7 @@ export const donateStyle = StyleSheet.create({
     backgroundImage:{
 width:"100%",
 height:375,
+resizeMode:"cover"
 
     },
     donationWindow:{

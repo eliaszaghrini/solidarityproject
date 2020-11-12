@@ -2,13 +2,11 @@ import React, { useState, Component } from 'react';
 import { Image, ImageBackground, Text, Button, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import colors from '../config/colors';
 import { Link, Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import Modal from "modal-enhanced-react-native-web";
 import { donateStyle } from '../globalStyles/desktop';
 import { Sticky, StickyContainer } from 'react-sticky';
 import { Dimensions } from 'react-native';
 import FrontPageDesktop from './FrontPageDesktop';
 import ProgramsPage from './ProgramsPage';
-import ReactDOM from 'react-dom';
 import FrontPagePhone from './FrontPagePhone';
 import amex from '../assets/images/payments/amex@3x.png';
 import discover from '../assets/images/payments/discover@3x.png';
@@ -36,12 +34,13 @@ function DonatePageDesktop() {
                         <Image source={lockClosed} style={donateStyle.lockLogo} />
                         <Text style={donateStyle.topOptionsBtn}>SECURE PAYMENT PAGE</Text>
                     </View>
+
                 </View>
-                <Image style={donateStyle.backgroundImage} source={backgroundImage}/>
+                                    <Image style={donateStyle.backgroundImage} source={backgroundImage}/>
                 <View style={donateStyle.donationWindow}>
                     <Text>Hello dear</Text>
                 </View>
-                <div>
+                <View>
                     <Router>
                         <div>
                             <ul>
@@ -53,7 +52,7 @@ function DonatePageDesktop() {
                         <Route path="/donate/myprograms" component={ProgramsPage}></Route>
                         <Route path="/donate/my" component={FrontPageDesktop}></Route>
                     </Router>
-                </div>
+                </View>
 
                 <Sticky disableCompensation>{({ style, }) => (
                     <header style={style}>
