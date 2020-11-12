@@ -12,7 +12,7 @@ import FrontPagePhone from './FrontPagePhone';
 import amex from '../assets/images/payments/amex@3x.png';
 import discover from '../assets/images/payments/discover@3x.png';
 import mastercard from '../assets/images/payments/mastercard@3x.png';
-import visadebit from '../assets/images/payments/visadebit@3x.png';
+import visadebit from '../assets/images/payments/visaDebit@3x.png';
 import lockClosed from '../assets/images/payments/lockClosedSharp@3x.png';
 import backgroundImage from '../assets/images/photos/home_page_cover.jpg';
 import solidarityLogo from '../assets/images/solidarityLogo/solidarityLogo3x.jpg';
