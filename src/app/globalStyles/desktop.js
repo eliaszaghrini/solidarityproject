@@ -9,7 +9,7 @@ const guidelineBaseHeight = 3005;
 
 const scale = size => width / guidelineBaseWidth * size;
 const verticalScale = size => height / guidelineBaseHeight * size;
-const moderateScale = (size, factor = 0.5) => size + ( scale(size) - size ) * factor;
+const moderateScale = (size, factor = 0.5) => size + (scale(size) - size) * factor;
 
 export const frontStyle = StyleSheet.create({
 
@@ -23,8 +23,8 @@ export const frontStyle = StyleSheet.create({
         marginTop: 30,
         fontFamily: 'futura',
         width: 644,
-        marginStart:80,
-        marginEnd:80,
+        marginStart: 80,
+        marginEnd: 80,
         height: 62,
         fontSize: 20,
         textAlign: "center"
@@ -33,7 +33,7 @@ export const frontStyle = StyleSheet.create({
         width: 240,
         height: 60,
         marginTop: 40,
-        marginBottom:40,
+        marginBottom: 40,
         flexDirection: 'row',
         justifyContent: "space-between",
     },
@@ -97,8 +97,8 @@ export const frontStyle = StyleSheet.create({
         width: "100%",
         height: 762,
         flexDirection: "row-reverse",
-        display:"flex",
-        justifyContent:"space-between"
+        display: "flex",
+        justifyContent: "space-between"
     },
     windowDonate: {
         height: 644,
@@ -109,11 +109,11 @@ export const frontStyle = StyleSheet.create({
         marginEnd: "8%",
         marginBottom: 40,
         marginTop: 78,
-        alignSelf:"flex-end"
+        alignSelf: "flex-end"
     },
     titleWindowDonate: {
         color: colors.midnight,
-        lineHeight:57,
+        lineHeight: 57,
         width: 389,
         height: 114,
         marginTop: 30,
@@ -154,7 +154,7 @@ export const frontStyle = StyleSheet.create({
     },
     descriptionWindowDonate: {
         color: colors.midnight,
-        lineHeight:32,
+        lineHeight: 32,
         width: 389,
         height: 72,
         marginTop: 30,
@@ -189,7 +189,7 @@ export const frontStyle = StyleSheet.create({
         justifyContent: 'center'
     },
     latestDonationWindowDonate: {
-        lineHeight:32,
+        lineHeight: 32,
         width: 389,
         height: 72,
         marginTop: 26,
@@ -202,18 +202,18 @@ export const frontStyle = StyleSheet.create({
     backgroundGraphicCover: {
         backgroundColor: colors.pinkishRed,
         marginTop: 82,
-        alignSelf:"flex-start",
-        marginStart:"8%"
+        alignSelf: "flex-start",
+        marginStart: "8%"
     },
     textGraphicCover: {
         fontFamily: 'futura-condensed-bold',
         flex: 1,
         fontSize: 80,
         alignSelf: "center",
-        marginStart:15,
-        marginEnd:15,
-        marginTop:-8,
-        marginBottom:-10,
+        marginStart: 15,
+        marginEnd: 15,
+        marginTop: -8,
+        marginBottom: -10,
         color: "white"
     },
     containerSection2: {
@@ -231,7 +231,7 @@ export const frontStyle = StyleSheet.create({
     },
     body: {
         color: colors.midnight,
-        lineHeight:32,
+        lineHeight: 32,
         width: "55%",
         fontFamily: 'futura-light',
         fontSize: 20,
@@ -242,10 +242,10 @@ export const frontStyle = StyleSheet.create({
     youtubeVideo: {
         width: 660,
         height: 334,
-        resizeMode:"contain",
+        resizeMode: "contain",
         marginStart: 100,
         marginTop: 30,
-        marginBottom:40,
+        marginBottom: 40,
     },
     containerSection3: {
         width: "100%",
@@ -257,7 +257,7 @@ export const frontStyle = StyleSheet.create({
         width: 196,
         alignContent: "center",
         marginTop: 48,
-        marginBottom:40,
+        marginBottom: 40,
         marginStart: 100,
         backgroundColor: "white",
         flexDirection: 'row'
@@ -271,7 +271,7 @@ export const frontStyle = StyleSheet.create({
         height: 280,
         width: 800,
         marginTop: 42,
-        marginBottom:40,
+        marginBottom: 40,
         marginStart: 100,
         flexDirection: 'row',
         justifyContent: "space-between",
@@ -305,7 +305,7 @@ export const frontStyle = StyleSheet.create({
         width: 330,
         marginTop: 30,
         marginStart: 100,
-        marginBottom:60,
+        marginBottom: 60,
         flexDirection: 'row',
         justifyContent: "space-between",
     },
@@ -324,8 +324,8 @@ export const frontStyle = StyleSheet.create({
         height: undefined,
         backgroundColor: "white",
         flexDirection: "row",
-        flexWrap:"wrap",
-        flex:1
+        flexWrap: "wrap",
+        flex: 1
     },
     footerBtn: {
         color: colors.midnight,
@@ -341,11 +341,11 @@ export const frontStyle = StyleSheet.create({
     containerNewsletter: {
         flexDirection: 'row',
         backgroundColor: "white",
-        alignSelf:"flex-end",
+        alignSelf: "flex-end",
         marginEnd: 80,
         marginTop: 30,
-        marginBottom:30,
-        marginStart:80,
+        marginBottom: 30,
+        marginStart: 80,
     },
     newsletterBtn: {
         color: colors.midnight,
@@ -375,19 +375,19 @@ export const programsStyle = StyleSheet.create({
         marginTop: scale(40),
         fontSize: scale(60),
         fontFamily: 'futura-condensed-bold',
-        marginStart:scale(120)
+        marginStart: scale(120)
     },
     topBar: {
         width: "100%",
-        height:scale(128),
-        flex:1,
+        height: scale(128),
+        flex: 1,
         flexDirection: 'row',
         backgroundColor: "white",
-        display:"flex",
-        justifyContent:"space-between"
+        display: "flex",
+        justifyContent: "space-between"
     },
     logo: {
-        flex:16,
+        flex: 16,
         width: scale(230),
         height: scale(70),
         resizeMode: "contain",
@@ -402,7 +402,7 @@ export const programsStyle = StyleSheet.create({
         height: scale(36),
         width: scale(146),
         marginTop: scale(49),
-        marginEnd:"1%",
+        marginEnd: "1%",
         justifyContent: "center",
         backgroundColor: colors.pinkishRed,
         color: "white",
@@ -412,7 +412,7 @@ export const programsStyle = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: "white",
         justifyContent: "flex-end",
-        marginEnd:scale(80)
+        marginEnd: scale(80)
     },
     topOptionsBtn: {
         color: colors.midnight,
@@ -427,16 +427,16 @@ export const programsStyle = StyleSheet.create({
     },
     subtitle: {
         color: colors.midnight,
-        marginStart:scale(120),
+        marginStart: scale(120),
         fontFamily: 'futura-condensed-bold',
         fontSize: scale(40),
         alignSelf: "start",
-        lineHeight:scale(72),
+        lineHeight: scale(72),
         marginTop: scale(30)
     },
     body: {
         color: colors.midnight,
-        lineHeight:scale(32),
+        lineHeight: scale(32),
         width: scale(776),
         fontFamily: 'futura',
         fontSize: scale(20),
@@ -444,24 +444,24 @@ export const programsStyle = StyleSheet.create({
         marginStart: scale(120),
         marginTop: scale(30),
     },
-    bulletText:{ 
-        fontFamily: 'futura-condensed-bold', 
+    bulletText: {
+        fontFamily: 'futura-condensed-bold',
         fontSize: scale(25),
-        marginStart:scale(120),
-        marginTop:scale(30)
+        marginStart: scale(120),
+        marginTop: scale(30)
     },
-    picture:{
-        width:scale(776),
-        height:scale(536),
-        marginStart:scale(120),
-        marginTop:scale(30),
-        resizeMode:"cover"
+    picture: {
+        width: scale(776),
+        height: scale(536),
+        marginStart: scale(120),
+        marginTop: scale(30),
+        resizeMode: "cover"
     },
     donateBtn: {
         height: scale(80),
         width: scale(332),
         marginTop: scale(30),
-        marginStart:scale(120),
+        marginStart: scale(120),
         backgroundColor: colors.pinkishRed,
         color: "white",
         textAlign: 'center',
@@ -474,10 +474,10 @@ export const programsStyle = StyleSheet.create({
         height: undefined,
         backgroundColor: "white",
         flexDirection: "row",
-        flexWrap:"wrap",
-        flex:1,
-        display:"flex",
-        justifyContent:"space-between"
+        flexWrap: "wrap",
+        flex: 1,
+        display: "flex",
+        justifyContent: "space-between"
     },
     footerBtn: {
         color: colors.midnight,
@@ -493,11 +493,11 @@ export const programsStyle = StyleSheet.create({
     containerNewsletter: {
         flexDirection: 'row',
         backgroundColor: "white",
-        alignSelf:"flex-end",
+        alignSelf: "flex-end",
         marginEnd: scale(80),
         marginTop: scale(30),
-        marginBottom:scale(30),
-        marginStart:scale(80),
+        marginBottom: scale(30),
+        marginStart: scale(80),
     },
     newsletterBtn: {
         color: colors.midnight,
@@ -518,6 +518,166 @@ export const programsStyle = StyleSheet.create({
         borderWidth: 2,
         fontFamily: "futura-condensed-bold",
         fontSize: scale(24),
+        justifyContent: "center"
+    },
+});
+
+export const donateStyle = StyleSheet.create({
+    title: {
+        marginTop: 40,
+        fontSize: 60,
+        fontFamily: 'futura-condensed-bold',
+        marginStart: 120
+    },
+    topBar: {
+        width: "100%",
+        height: 128,
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: "white",
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    logo: {
+        flex: 16,
+        width: 230,
+        height: 70,
+        resizeMode: "contain",
+        alignSelf: "flex-start",
+        marginStart: 80,
+        marginBottom: 30,
+        marginTop:30
+    },
+    containerTopBar: {
+        flexDirection: 'row',
+        backgroundColor: "white",
+        justifyContent: "flex-end",
+        marginEnd: 80
+    },
+    lockLogo: {
+        width: 15,
+        height: 20,
+        marginEnd: 20,
+        marginTop: 57
+    },
+    topOptionsBtn: {
+        color: colors.midnight,
+        fontFamily: "futura-condensed-bold",
+        fontSize: 24,
+        backgroundColor: "white",
+        height: 36,
+        width: 213,
+        marginTop: 52,
+        justifyContent: "center",
+        textAlign: "center"
+    },
+    backgroundImage:{
+width:"100%",
+height:375,
+
+    },
+    donationWindow:{
+        width:846,
+        height:236,
+        marginStart:120,
+        marginTop:-150,
+        backgroundColor:"white",
+        borderColor: colors.midnight,
+        borderWidth: 6,
+    },
+    subtitle: {
+        color: colors.midnight,
+        marginStart: 120,
+        fontFamily: 'futura-condensed-bold',
+        fontSize: 40,
+        alignSelf: "start",
+        lineHeight: 72,
+        marginTop: 30
+    },
+    body: {
+        color: colors.midnight,
+        lineHeight: 32,
+        width: 776,
+        fontFamily: 'futura',
+        fontSize: 20,
+        alignSelf: "start",
+        marginStart: 120,
+        marginTop: 30,
+    },
+    bulletText: {
+        fontFamily: 'futura-condensed-bold',
+        fontSize: 25,
+        marginStart: 120,
+        marginTop: 30
+    },
+    picture: {
+        width: 776,
+        height: 536,
+        marginStart: 120,
+        marginTop: 30,
+        resizeMode: "cover"
+    },
+    donateBtn: {
+        height:80,
+        width: 332,
+        marginTop: 30,
+        marginStart: 120,
+        backgroundColor: colors.pinkishRed,
+        color: "white",
+        textAlign: 'center',
+        fontFamily: "futura-condensed-bold",
+        fontSize: 40,
+        justifyContent: 'center'
+    },
+    containerFooter: {
+        width: "100%",
+        height: undefined,
+        backgroundColor: "white",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        flex: 1,
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    footerBtn: {
+        color: colors.midnight,
+        fontFamily: "futura-condensed-bold",
+        fontSize: 24,
+        marginStart: 40,
+        backgroundColor: "white",
+        height: 72,
+        width: 205,
+        marginTop: 30,
+        justifyContent: "center",
+    },
+    containerNewsletter: {
+        flexDirection: 'row',
+        backgroundColor: "white",
+        alignSelf: "flex-end",
+        marginEnd: 80,
+        marginTop: 30,
+        marginBottom: 30,
+        marginStart: 80,
+    },
+    newsletterBtn: {
+        color: colors.midnight,
+        fontFamily: "futura-condensed-bold",
+        fontSize: 24,
+        marginEnd: 29,
+        backgroundColor: "white",
+        height: 72,
+        width: 293,
+        justifyContent: "center",
+    },
+    emailInput: {
+        color: colors.midnight,
+        height: 60,
+        width: 269,
+        textAlign: "center",
+        borderColor: colors.midnight,
+        borderWidth: 2,
+        fontFamily: "futura-condensed-bold",
+        fontSize: 24,
         justifyContent: "center"
     },
 });
