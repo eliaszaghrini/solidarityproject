@@ -2,6 +2,7 @@ import React, { useState, Component } from 'react';
 import { Image, ImageBackground, Text, Button, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import colors from '../config/colors';
 import { Link, Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import {} from 'react-router-dom';
 import { donateStyle } from '../globalStyles/desktop';
 import { Sticky, StickyContainer } from 'react-sticky';
 import { Dimensions } from 'react-native';
