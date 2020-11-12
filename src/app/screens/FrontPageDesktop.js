@@ -2,7 +2,6 @@ import React, { useState, Component } from 'react';
 import { Image, ImageBackground, Text, Linking, frontStyleheet, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import colors from '../config/colors';
 import { Link } from 'react-router-dom';
-import { } from 'react-scroll';
 import Modal from "modal-enhanced-react-native-web";
 import { frontStyle } from '../globalStyles/desktop';
 import { Sticky, StickyContainer } from 'react-sticky';
@@ -119,7 +118,7 @@ function FrontPageDesktop() {
                         <Image style={frontStyle.logo} source={solidarityLogo} />
                     </Link>
                     <View style={frontStyle.containerTopBar}>
-                        <Link to="/#donate" style={{ textDecoration: 'none' }}>
+                        <Link to="/donate" style={{ textDecoration: 'none' }}>
                             <TouchableOpacity style={frontStyle.topDonateBtn}>DONATE NOW</TouchableOpacity>
                         </Link>
                         <TouchableOpacity style={frontStyle.topOptionsBtn}>
