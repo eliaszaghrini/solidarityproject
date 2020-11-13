@@ -524,10 +524,12 @@ export const programsStyle = StyleSheet.create({
 
 export const donateStyle = StyleSheet.create({
     title: {
+        height:62,
         marginTop: 40,
         fontSize: 60,
         fontFamily: 'futura-condensed-bold',
-        marginStart: 120
+        marginStart: 40,
+        lineHeight:72
     },
     topBar: {
         width: "100%",
@@ -578,13 +580,101 @@ resizeMode:"cover"
 
     },
     donationWindow:{
-        width:846,
-        height:236,
+        width:858,
+        height:248,
         marginStart:120,
         marginTop:-150,
         backgroundColor:"white",
         borderColor: colors.midnight,
         borderWidth: 6,
+        flexDirection:'row'
+    },
+    ammountWindowDonate: {
+        color: colors.midnight,
+        height: 66,
+        width: 156,
+        textAlign: "left",
+        borderColor: colors.pinkishRed,
+        marginTop: 45,
+        borderWidth: 3,
+        fontFamily: "futura-condensed-bold",
+        fontSize: 30,
+        marginStart: 40
+    },
+    creditStyleBtnUnselected:{
+        width:250,
+        height:60,
+        borderWidth:2,
+        fontSize:25,
+        fontFamily:'futura-condensed-bold',
+        borderColor:colors.midnight,
+        color:colors.midnight,
+        marginStart:159,
+        marginTop:42,
+        textAlign:"center",
+        justifyContent:'center'
+    },
+    creditStyleBtnSelected:{
+        width:250,
+        height:60,
+        fontSize:25,
+        fontFamily:'futura-condensed-bold',
+        color:"white",
+        backgroundColor:colors.emerald,
+        marginStart:159,
+        marginTop:42,
+        textAlign:"center",
+        justifyContent:'center'
+    },
+    paypalStyleBtnUnselected:{
+        width:141,
+        height:60,
+        borderWidth:2,
+        fontSize:25,
+        fontFamily:'futura-condensed-bold',
+        borderColor:colors.midnight,
+        color:colors.midnight,
+        marginStart:20,
+        marginTop:42,
+        textAlign:"center",
+        justifyContent:'center'
+    },
+    paypalStyleBtnSelected:{
+        width:141,
+        height:60,
+        fontSize:25,
+        fontFamily:'futura-condensed-bold',
+        color:"white",
+        backgroundColor:colors.emerald,
+        marginStart:20,
+        marginTop:42,
+        textAlign:"center",
+        justifyContent:'center'
+    },
+    chequeStyleBtnUnselected:{
+        width:250,
+        height:60,
+        borderWidth:2,
+        fontSize:25,
+        fontFamily:'futura-condensed-bold',
+        borderColor:colors.midnight,
+        color:colors.midnight,
+        marginStart:159,
+        marginTop:42,
+        textAlign:"center",
+        justifyContent:'center'
+    },
+    chequeStyleBtnSelected:{
+        width:250,
+        height:60,
+        fontSize:25,
+        fontFamily:'futura-condensed-bold',
+        color:"white",
+        backgroundColor:colors.emerald,
+        marginStart:159,
+        marginTop:42,
+        textAlign:"center",
+        justifyContent:'center'
     },
     subtitle: {
         color: colors.midnight,
@@ -605,10 +695,11 @@ resizeMode:"cover"
         marginStart: 120,
         marginTop: 30,
     },
-    bulletText: {
+    descriptionDonationWindow: {
+        width:464,
         fontFamily: 'futura-condensed-bold',
         fontSize: 25,
-        marginStart: 120,
+        marginStart: 40,
         marginTop: 30
     },
     picture: {
