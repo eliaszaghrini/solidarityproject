@@ -23,7 +23,6 @@
     "react-scroll": "^1.8.1",
     "react-share": "^4.3.1",
     "react-sticky": "^6.0.3",
-    "undefined": "react-native-community/checkbox",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
