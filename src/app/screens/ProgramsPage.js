@@ -3,7 +3,7 @@ import { Image, ImageBackground, Text, Linking, programsStyleheet, View, ScrollV
 import colors from '../config/colors';
 import { Link } from 'react-router-dom';
 import Modal from "modal-enhanced-react-native-web";
-import { programsStyle } from '../globalStyles/desktop';
+import { programsStyle } from '../globalStyles/desktopPrograms';
 import { Sticky, StickyContainer } from 'react-sticky';
 import { Dimensions } from 'react-native';
 import solidarityLogo from '../assets/images/solidarityLogo/solidarityLogo3x.jpg';

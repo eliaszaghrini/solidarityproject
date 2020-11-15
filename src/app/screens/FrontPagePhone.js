@@ -3,7 +3,7 @@ import { Image, ImageBackground, Text, Linking, frontStyleheet, View, ScrollView
 import colors from '../config/colors';
 import { Link } from 'react-router-dom';
 import Modal from "modal-enhanced-react-native-web";
-import { frontStyle } from '../globalStyles/phone';
+import { frontStyle } from '../globalStyles/phoneFront';
 import { Sticky, StickyContainer } from 'react-sticky';
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import YoutubeVideo from './YoutubeVideo';

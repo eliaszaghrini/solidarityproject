@@ -3,7 +3,7 @@ import { Image, Check, Text, View, Button, ScrollView, TouchableOpacity, TextInp
 import colors from '../config/colors';
 import { Link, Route, BrowserRouter as Router, NavLink } from 'react-router-dom';
 import { } from 'react-router-dom';
-import { donateStyle } from '../globalStyles/desktop';
+import { donateStyle } from '../globalStyles/desktopDonate';
 import { Sticky, StickyContainer } from 'react-sticky';
 import { Dimensions } from 'react-native';
 import CreditDesktop from './CreditDesktop';
@@ -141,6 +141,29 @@ function DonatePageDesktop() {
                         <Route path="/donate/creditordebit" component={CreditDesktop}></Route>
                         <Route path="/donate/paypal" component={ProgramsPage}></Route>
                     </Router>
+                </View>
+
+                <View style={donateStyle.containerSection6}>
+                    <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                        <Link to="/getInTouch" style={{ textDecoration: 'none' }}>
+                            <TouchableOpacity style={[donateStyle.footerBtn, { marginStart: 80, width: 132, }]}>GET IN TOUCH</TouchableOpacity>
+                        </Link>
+                        <Link to="/terms&Conditions" style={{ textDecoration: 'none' }}>
+                            <TouchableOpacity style={donateStyle.footerBtn}>TERMS & CONDITIONS</TouchableOpacity>
+                        </Link>
+                        <Link to="/privacyPolicy" style={{ textDecoration: 'none' }}>
+                            <TouchableOpacity style={donateStyle.footerBtn}>PRIVACY POLICY</TouchableOpacity>
+                        </Link>
+                    </View>
+                    <View
+                        style={donateStyle.containerNewsletter}>
+                        <TouchableOpacity style={donateStyle.newsletterBtn}>SUBSCRIBE TO OUR NEWSLETTER</TouchableOpacity>
+                        <TextInput
+                            style={donateStyle.emailInput}
+                            onChangeText={(email) => setEmail(email)}
+                            placeholder='YOUR EMAIL'
+                        />
+                    </View>
                 </View>
 
                 <Sticky disableCompensation>{({ style, }) => (
