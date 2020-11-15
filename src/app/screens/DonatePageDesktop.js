@@ -1,12 +1,12 @@
 import React, { useState, Component } from 'react';
-import { Image, Check, Text, Button, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { Image, Check, Text, View, Button, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import colors from '../config/colors';
-import { Link, Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Link, Route, BrowserRouter as Router, NavLink } from 'react-router-dom';
 import { } from 'react-router-dom';
 import { donateStyle } from '../globalStyles/desktop';
 import { Sticky, StickyContainer } from 'react-sticky';
 import { Dimensions } from 'react-native';
-import FrontPageDesktop from './FrontPageDesktop';
+import CreditDesktop from './CreditDesktop';
 import ProgramsPage from './ProgramsPage';
 import FrontPagePhone from './FrontPagePhone';
 import amex from '../assets/images/payments/amex@3x.png';
@@ -17,6 +17,7 @@ import lockClosed from '../assets/images/payments/lockClosedSharp@3x.png';
 import backgroundImage from '../assets/images/photos/home_page_cover.jpg';
 import solidarityLogo from '../assets/images/solidarityLogo/solidarityLogo3x.jpg';
 import { Formik } from 'formik';
+import { Switch } from 'react-view-switch';
 
 
 function DonatePageDesktop() {
@@ -31,7 +32,7 @@ function DonatePageDesktop() {
     const [paypalStyle, setpaypalStyle] = useState(donateStyle.paypalStyleBtnUnselected);
     const [chequeStyle, setchequeStyle] = useState(donateStyle.chequeStyleBtnUnselected);
     const creditStyleBtnPressHandler = () => {
-        if (creditBtn == false) {
+        if (creditBtn === false) {
             setcreditStyle(donateStyle.creditStyleBtnSelected);
             setpaypalStyle(donateStyle.paypalStyleBtnUnselected);
             setchequeStyle(donateStyle.chequeStyleBtnUnselected);
@@ -45,7 +46,7 @@ function DonatePageDesktop() {
         }
     }
     const paypalStyleBtnPressHandler = () => {
-        if (paypalBtn == false) {
+        if (paypalBtn === false) {
             setpaypalStyle(donateStyle.paypalStyleBtnSelected);
             setcreditStyle(donateStyle.creditStyleBtnUnselected);
             setchequeStyle(donateStyle.chequeStyleBtnUnselected);
@@ -59,7 +60,7 @@ function DonatePageDesktop() {
         }
     }
     const chequeStyleBtnPressHandler = () => {
-        if (chequeBtn == false) {
+        if (chequeBtn === false) {
             setchequeStyle(donateStyle.chequeStyleBtnSelected);
             setpaypalStyle(donateStyle.paypalStyleBtnUnselected);
             setcreditStyle(donateStyle.creditStyleBtnUnselected);
@@ -87,6 +88,8 @@ function DonatePageDesktop() {
                 break;
         }
     }
+
+
     return (
         <View>
 
@@ -118,21 +121,25 @@ function DonatePageDesktop() {
                         </View>
                         <Text style={donateStyle.descriptionDonationWindow}>Increase my donation amount to cover fees.</Text>
                     </View>
+
                 </View>
+
                 <View>
-                    <Text style={[donateStyle.title,{marginTop:50,marginStart:159}]}>PAYMENT METHOD</Text>
+                    <Text style={[donateStyle.title, { marginTop: 50, marginStart: 159 }]}>PAYMENT METHOD</Text>
                     <Router>
                         <View style={{ flexDirection: 'row' }}>
-                        <Link to='/donate/creditordebit' style={{ textDecoration: 'none',}} onPress={creditStyleBtnPressHandler}>
-                                <View style={creditStyle} >CREDIT/DEBIT CARD</View>
-                            </Link>
-                            <Link to='/donate/paypal' style={{ textDecoration: 'none',}} onPress={paypalStyleBtnPressHandler}>
+                            <View style={creditStyle}>
+                                <NavLink to='/donate/creditordebit'>
+                                    CREDIT/DEBIT CARD
+                            </NavLink>
+                            </View>
+                            <NavLink to='/donate/paypal' activeStyle={donateStyle.paypalStyleBtnUnselected} >
                                 <View style={paypalStyle} >PAYPAL</View>
-                            </Link>
+                            </NavLink>
                         </View>
 
-                        <Route path="/donate/creditordebit" component={ProgramsPage}></Route>
-                        <Route path="/donate/paypal" component={FrontPageDesktop}></Route>
+                        <Route path="/donate/creditordebit" component={CreditDesktop}></Route>
+                        <Route path="/donate/paypal" component={ProgramsPage}></Route>
                     </Router>
                 </View>
 

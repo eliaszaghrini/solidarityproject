@@ -33,7 +33,7 @@ function FrontPagePhone() {
     const [btn2Style, setBtn2Style] = useState(frontStyle.donateBtnUnselected);
     const [btn3Style, setBtn3Style] = useState(frontStyle.donateBtnUnselected);
     const btn1PressHandler = () => {
-        if (btn1Donate == false) {
+        if (btn1Donate === false) {
             setBtn1Style(frontStyle.donateBtnSelected);
             setBtn2Style(frontStyle.donateBtnUnselected);
             setBtn3Style(frontStyle.donateBtnUnselected);
@@ -47,7 +47,7 @@ function FrontPagePhone() {
         }
     }
     const btn2PressHandler = () => {
-        if (btn2Donate == false) {
+        if (btn2Donate === false) {
             setBtn2Style(frontStyle.donateBtnSelected);
             setBtn1Style(frontStyle.donateBtnUnselected);
             setBtn3Style(frontStyle.donateBtnUnselected);
@@ -61,7 +61,7 @@ function FrontPagePhone() {
         }
     }
     const btn3PressHandler = () => {
-        if (btn3Donate == false) {
+        if (btn3Donate === false) {
             setBtn3Style(frontStyle.donateBtnSelected);
             setBtn2Style(frontStyle.donateBtnUnselected);
             setBtn1Style(frontStyle.donateBtnUnselected);
