@@ -17,7 +17,6 @@ import solidarityLogo from '../assets/images/solidarityLogo/solidarityLogo3x.jpg
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Checkbox, OutlinedInput } from '@material-ui/core';
-import { CheckBox } from 'react-native-elements';
 import checkIcon from '../assets/images/payments/checkboxSharp.svg';
 
 const ReviewSchema = yup.object({
