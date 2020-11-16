@@ -1,5 +1,5 @@
 import React, { useState, Component } from 'react';
-import { Image, Check, Text, Button, View, ScrollView, TouchableOpacity, TextInput, ActionSheetIOS } from 'react-native';
+import { Image, Check, Text, Button, View, ScrollView, TouchableOpacity, TextInput, Linking } from 'react-native';
 import colors from '../config/colors';
 import { Link, Switch, Route, BrowserRouter as Router, NavLink } from 'react-router-dom';
 import { } from 'react-router-dom';
@@ -16,45 +16,116 @@ import visadebit from '../assets/images/payments/visaDebit@3x.png';
 import solidarityLogo from '../assets/images/solidarityLogo/solidarityLogo3x.jpg';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { Checkbox, OutlinedInput } from '@material-ui/core';
+import { Checkbox, OutlinedInput, StylesProvider } from '@material-ui/core';
 import checkIcon from '../assets/images/payments/checkboxSharp.svg';
+import { countries, states } from '../config/arrays';
 
 const ReviewSchema = yup.object({
     CardNo: yup.string()
         .required()
-        .min(4),
+        .test('is-length-16', 'Enter a number of 16-digit', (val) => {
+            return parseInt(val).toString().length == 16;
+        }),
 
-    body: yup.string()
+    ExpiryDate: yup.string()
         .required()
-        .min(8),
+        .max(5),
 
-    rating: yup.string()
+    SecurityCode: yup.string()
         .required()
-        .test('is-num-1-5', 'Rating is a number from 1 to 5', (val) => {
-            return parseInt(val) < 6 && parseInt(val) > 0;
-        })
+        .max(3),
+
+    DonorName: yup.string()
+        .required(),
+
+    FirstName: yup.string()
+        .required(),
+
+    LastName: yup.string()
+        .required(),
+
+    Country: yup.string()
+        .required(),
+
+    City: yup.string()
+        .required(),
+
+    Address: yup.string()
+        .required(),
+
+    Email: yup.string()
+        .required(),
 })
 
-
-
 function CreditDesktop() {
-    const [hey, sethey] = useState("Hello");
-    const [isChecked, setChecked] = useState(false);
-    const [mysource, setSource] = useState(discover);
-    const [mystyle, setStyle] = useState(creditStyle.style1);
+    const [myCountry, setCountry] = useState("hey");
 
-    const handlechk = () => {
-        if (isChecked) {
-            setSource(discover);
-            setChecked(false);
-            setStyle(creditStyle.style1);
-        }
-        else {
-            setSource(checkIcon);
-            setChecked(true);
-            setStyle(creditStyle.style2);
+    const [isChecked1, setChecked1] = useState(false);
+    const [chkSource1, setChkSource1] = useState();
+    const [chkStyle1, setChkStyle1] = useState(creditStyle.chkUnchecked);
+
+    const [isChecked2, setChecked2] = useState(false);
+    const [chkSource2, setChkSource2] = useState();
+    const [chkStyle2, setChkStyle2] = useState(creditStyle.chkUnchecked);
+
+    const [isChecked3, setChecked3] = useState(false);
+    const [chkSource3, setChkSource3] = useState();
+    const [chkStyle3, setChkStyle3] = useState(creditStyle.chkUnchecked);
+
+    const handleChk = (key) => {
+        switch (key) {
+            case 1:
+                if (isChecked1) {
+                    setChkSource1();
+                    setChecked1(false);
+                    setChkStyle1(creditStyle.chkUnchecked);
+                }
+                else {
+                    setChkSource1(checkIcon);
+                    setChecked1(true);
+                    setChkStyle1(creditStyle.chkChecked);
+                }
+                break;
+
+            case 2:
+                if (isChecked2) {
+                    setChkSource2();
+                    setChecked2(false);
+                    setChkStyle2(creditStyle.chkUnchecked);
+                }
+                else {
+                    setChkSource2(checkIcon);
+                    setChecked2(true);
+                    setChkStyle2(creditStyle.chkChecked);
+                }
+                break;
+
+            case 3:
+                if (isChecked3) {
+                    setChkSource3();
+                    setChecked3(false);
+                    setChkStyle3(creditStyle.chkUnchecked);
+                }
+                else {
+                    setChkSource3(checkIcon);
+                    setChecked3(true);
+                    setChkStyle3(creditStyle.chkChecked);
+                }
+                break;
+
+            default:
+                break;
         }
     }
+    
+    const [isUS, setUS] = useState(false);
+    const showState = (value) => {
+        if (value === "United States")
+            setUS(true);
+        else
+            setUS(false);
+    }
+
     return (
         <View style={creditStyle.container}>
             <View style={{ flexDirection: 'row' }}>
@@ -65,14 +136,14 @@ function CreditDesktop() {
             </View>
 
             <Formik
-                initialValues={{ CardNo: '', ExpiryDate: '', SecurityCode: '', DonorName: '', body: '', rating: '', color: '' }}
+                initialValues={{ CardNo: '', ExpiryDate: '', SecurityCode: '', DonorName: '', Country: '', FirstName: '', LastName: '', State: '', City: '', ZipCode: '', Address: '', Email: '', Message: '' }}
                 validationSchema={ReviewSchema}
+                validateOnMount
                 onSubmit={(values, actions) => {
                     actions.resetForm();
-                    sethey(values.color);
                 }}>
                 {(props) => (
-                    <View>
+                    <View onPress={showState(props.values.Country)}>
                         <Text style={creditStyle.body}>Please note your card information is not held on our site, it is processed securely using the Salsa Labs gateway. </Text>
                         <View style={{ flexDirection: 'row' }}>
                             <View>
@@ -132,6 +203,7 @@ function CreditDesktop() {
                                     name="Select country"
                                     value={props.values.Country}
                                     onChange={props.handleChange('Country')}
+
                                     style={{
                                         width: 341,
                                         height: 60,
@@ -145,10 +217,9 @@ function CreditDesktop() {
                                         outline: 'none'
                                     }}
                                 >
-                                    <option value="" label="Select country" />
-                                    <option value="red" label="red" />
-                                    <option value="blue" label="blue" />
-                                    <option value="green" label="green" />
+                                    {countries.map((option) => (
+                                        <option value={option.name}>{option.name}</option>
+                                    ))}
                                 </select>
                                 <Text style={creditStyle.errors}>{props.touched.Country && props.errors.Country}</Text>
                                 <Text style={creditStyle.boxDescription}>CITY</Text>
@@ -175,6 +246,7 @@ function CreditDesktop() {
                                     name="Select state"
                                     value={props.values.State}
                                     onChange={props.handleChange('State')}
+                                    disabled={!isUS}
                                     style={{
                                         width: 341,
                                         height: 60,
@@ -188,10 +260,10 @@ function CreditDesktop() {
                                         outline: 'none'
                                     }}
                                 >
-                                    <option value="" label="Select state" />
-                                    <option value="red" label="red" />
-                                    <option value="blue" label="blue" />
-                                    <option value="green" label="green" />
+                                    {states.map((option) => (
+                                        <option value={option.text}>{option.text}</option>
+                                    ))}
+
                                 </select>
                                 <Text style={creditStyle.errors}>{props.touched.State && props.errors.State}</Text>
                                 <Text style={creditStyle.boxDescription}>ZIP CODE</Text>
@@ -231,23 +303,29 @@ function CreditDesktop() {
                                 value={props.values.Message}
                                 onBlur={props.handleBlur('Message')}
                                 style={creditStyle.inputMessage} />
-                            <View style={{ flexDirection: 'row', marginStart: 20, marginTop: 20 }}>
-                                <Checkbox style={{ color: colors.pinkishRed, width: 20, height: 20 }}>Hey</Checkbox>
-                                <Text style={[creditStyle.body, { marginTop: 0 }]}>Show my first name</Text>
-                                <TouchableOpacity onPress={() => handlechk()}>
-                                <Image style={mystyle} source={mysource} /></TouchableOpacity>
+                            <View style={{ flexDirection: 'row', marginStart: 20, marginTop: 12 }}>
+                                <TouchableOpacity onPress={() => handleChk(2)}>
+                                    <Image style={[chkStyle2, { marginTop: 30 }]} source={chkSource2} />
+                                </TouchableOpacity>
+                                <Text style={[creditStyle.body, { marginStart: 20, paddingBottom: 17 }]}>Show my first name</Text>
                             </View>
-
                         </View>
-
-
-                        <Text>{props.touched.rating && props.errors.rating}</Text>
-                        <TouchableOpacity CardNo='Submit' onPress={props.handleSubmit} style={{ width: 60, height: 60, backgroundColor: colors.emerald, }}>Hello</TouchableOpacity>
+                        <View style={{ flexDirection: 'row' }}>
+                            <TouchableOpacity onPress={() => handleChk(3)}>
+                                <Image style={[chkStyle3, { marginTop: 34, width: 30, height: 30 }]} source={chkSource3} />
+                            </TouchableOpacity>
+                            <Text style={[creditStyle.body, { marginStart: 20, marginTop: 30 }]}>Please keep me updated with news from Lebanese Solidarity </Text>
+                        </View>
+                        <TouchableOpacity CardNo='Submit' disabled={!props.isValid} onPress={props.handleSubmit} style={creditStyle.donateBtn}>DONATE NOW</TouchableOpacity>
+                        <Text style={[creditStyle.body, { width: 722, marginTop: 30 }]}>Lebanese Solidarity is a 501(c)(3) charitable organisation and charitable contributions are tax-deductible. For any enquires please contact{" "}
+                            <TouchableOpacity onPress={() => { Linking.openURL('mailto:INFO@SOLIDARITY.ORG') }} >
+                                <Text style={{ textDecorationLine: "underline" }}>info@lebanesesolidarity.org</Text>
+                            </TouchableOpacity>.
+                        </Text>
                     </View>
                 )}
 
             </Formik>
-            <Text>{hey}</Text>
         </View>
     );
 }

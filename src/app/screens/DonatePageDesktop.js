@@ -18,7 +18,7 @@ import backgroundImage from '../assets/images/photos/home_page_cover.jpg';
 import solidarityLogo from '../assets/images/solidarityLogo/solidarityLogo3x.jpg';
 import { Formik } from 'formik';
 import { Switch } from 'react-view-switch';
-
+import checkIcon from '../assets/images/payments/checkboxSharp.svg';
 
 function DonatePageDesktop() {
 
@@ -88,7 +88,24 @@ function DonatePageDesktop() {
                 break;
         }
     }
+    const [isChecked, setChecked] = useState(false);
+    const [chkSource, setChkSource] = useState();
+    const [chkStyle, setChkStyle] = useState(donateStyle.chkUnchecked);
 
+    const handleChk = () => {
+
+        if (isChecked) {
+            setChkSource();
+            setChecked(false);
+            setChkStyle(donateStyle.chkUnchecked);
+        }
+        else {
+            setChkSource(checkIcon);
+            setChecked(true);
+            setChkStyle(donateStyle.chkChecked);
+        }
+
+    }
 
     return (
         <View>
@@ -119,7 +136,12 @@ function DonatePageDesktop() {
                                 placeholder='$' />
                             <Text style={{ marginStart: 20, marginTop: 41, fontFamily: 'futura-condensed-bold', fontSize: 30, lineHeight: 66 }}>$ - USD</Text>
                         </View>
-                        <Text style={donateStyle.descriptionDonationWindow}>Increase my donation amount to cover fees.</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <TouchableOpacity onPress={() => handleChk()}>
+                                <Image style={[chkStyle, { marginTop: 34, width: 30, height: 30,marginStart:40 }]} source={chkSource} />
+                            </TouchableOpacity>
+                            <Text style={[donateStyle.descriptionDonationWindow,{width:212,marginStart:20}]}>Increase my donation amount to cover fees.</Text>
+                        </View>
                     </View>
 
                 </View>

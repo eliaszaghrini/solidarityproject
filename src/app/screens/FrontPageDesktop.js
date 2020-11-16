@@ -235,9 +235,9 @@ function FrontPageDesktop() {
                         <TouchableOpacity onPress={() => { Linking.openURL('https://www.instagram.com/solidaritylebanon/') }} style={frontStyle.socialMediaBtn}>
                             <Image source={instagramLogo} style={frontStyle.socialMediaIcon} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => { Linking.openURL('mailto:INFO@SOLIDARITY.ORG.LB') }} style={frontStyle.socialMediaBtn}>
-                            <Image source={mailLogo} style={frontStyle.socialMediaIcon} />
-                        </TouchableOpacity>
+                            <TouchableOpacity onPress={() => { Linking.openURL('mailto:INFO@SOLIDARITY.ORG.LB') }} style={frontStyle.socialMediaBtn}>
+                                <Image source={mailLogo} style={frontStyle.socialMediaIcon} />
+                            </TouchableOpacity>
                     </View>
                 </View>
 

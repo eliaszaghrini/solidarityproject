@@ -265,6 +265,17 @@ export const donateStyle = StyleSheet.create({
         fontSize: 24,
         justifyContent: "center"
     },
+    chkUnchecked:{
+        width:20,
+        height:20,
+        borderWidth:2,
+        borderColor:colors.midnight,
+    },
+    chkChecked:{
+        width:20,
+        height:20,
+        borderColor:colors.midnight,
+    },
 });
 
 export const creditStyle = StyleSheet.create({
@@ -341,22 +352,34 @@ export const creditStyle = StyleSheet.create({
     inputMessage:{
         width:"100%",
         height:68,
-        marginBottom:20,
         fontFamily:"futura-condensed-bold",
         color:colors.midnight,
         fontSize:25,
         lineHeight:57,
         paddingStart:20,
+        marginTop:10
     },
-    style1:{
+    chkUnchecked:{
         width:20,
         height:20,
         borderWidth:2,
         borderColor:colors.midnight,
     },
-    style2:{
+    chkChecked:{
         width:20,
         height:20,
         borderColor:colors.midnight,
+    },
+    donateBtn:{
+        width:341,
+        height:80,
+        backgroundColor:colors.pinkishRed,
+        color:"white",
+        fontFamily:"futura-condensed-bold",
+        fontSize:40,
+        alignItems:'center',
+        justifyContent:"center",
+        textAlign:"center",
+        marginTop:40
     }
 });
