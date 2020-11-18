@@ -50,18 +50,6 @@ function ThankYouPageDesktop() {
                     <View style={thankYouStyle.windowDonate}>
                         <Text style={thankYouStyle.titleWindowDonate}>HELP REBUILD BEIRUT & FEED FAMILIES </Text>
                         <Text style={thankYouStyle.descriptionWindowDonate}>Could provide a week of food boxes for one family.</Text>
-                        <TextInput
-                            style={thankYouStyle.ammountWindowDonate}
-                            onChangeText={(otherAmmount) => setOtherAmmount(otherAmmount)}
-                            placeholder='$ - OTHER AMOUNT' />
-                        <Link
-                            to={{
-                                pathname: "/donate",
-                                state: { test: "hey" }
-                            }}
-                            style={{ textDecoration: 'none' }}>
-                            <TouchableOpacity style={thankYouStyle.donateBtnWindowDonate}>DONATE NOW</TouchableOpacity>
-                        </Link>
                         <Text style={thankYouStyle.latestDonationWindowDonate}>
                             <Text style={{ color: colors.emerald }}>$125</Text>・Toufic M・Boston・23 mins ago <br />
                             <Text style={{ fontFamily: 'futura' }}>Praying for all those affected.</Text>
@@ -121,7 +109,6 @@ function ThankYouPageDesktop() {
                                 <TouchableOpacity style={[thankYouStyle.topOptionsBtn, { marginEnd: 80, width: 122 }]}>
                                     <Link to="/" style={{ textDecoration: 'none', color: colors.midnight }}>RETURN TO HOME</Link>
                                 </TouchableOpacity>
-
                             </View>
                         </View>
                     </header>)}
