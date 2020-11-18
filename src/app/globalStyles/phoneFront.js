@@ -73,7 +73,7 @@ export const frontStyle = StyleSheet.create({
         fontSize: 20,
         marginEnd: 20,
         height: 36,
-        width: 154,
+        width: 115,
         marginTop: 12,
         justifyContent: "center",
         backgroundColor: colors.pinkishRed,
@@ -211,7 +211,7 @@ export const frontStyle = StyleSheet.create({
     body: {
         color: colors.midnight,
         width: "90%",
-        fontFamily: 'futura-light',
+        fontFamily: 'futura',
         fontSize: 18,
         alignSelf: "start",
         marginStart: 20,
@@ -219,8 +219,9 @@ export const frontStyle = StyleSheet.create({
         lineHeight:32
     },
     youtubeVideo: {
-        width: undefined,
-        height: 334,
+        width: 336,
+        height: 170,
+        resizeMode: "contain",
         marginStart: 20,
         marginTop: 20,
         marginBottom:20,
@@ -332,12 +333,12 @@ export const frontStyle = StyleSheet.create({
         color: colors.midnight,
         height: 60,
         width: 269,
-        textAlign: "center",
         borderColor: colors.midnight,
         marginTop:20,
         borderWidth: 2,
         fontFamily: "futura-condensed-bold",
         fontSize: 22,
         justifyContent: "center",
+        paddingLeft:16
     },
 });

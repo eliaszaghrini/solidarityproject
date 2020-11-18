@@ -26,7 +26,7 @@ import * as Scroll from 'react-scroll';
 var scroll = Scroll.animateScroll;
 
 function FrontPageDesktop() {
-
+    const [myString, setMyString] = useState("hello");
     const [modalOpen, setModalOpen] = useState(true);
     const [btn1Donate, setBtn1Donate] = useState(false);
     const [btn2Donate, setBtn2Donate] = useState(false);
@@ -157,7 +157,14 @@ function FrontPageDesktop() {
                             style={frontStyle.ammountWindowDonate}
                             onChangeText={(otherAmmount) => setOtherAmmount(otherAmmount)}
                             placeholder='$ - OTHER AMOUNT' />
-                        <TouchableOpacity style={frontStyle.donateBtnWindowDonate}>DONATE NOW</TouchableOpacity>
+                        <Link
+                            to={{
+                                pathname: "/donate",
+                                state: { test: "hey" }
+                            }}
+                            style={{ textDecoration: 'none' }}>
+                            <TouchableOpacity style={frontStyle.donateBtnWindowDonate}>DONATE NOW</TouchableOpacity>
+                        </Link>
                         <Text style={frontStyle.latestDonationWindowDonate}>
                             <Text style={{ color: colors.emerald }}>$125</Text>・Toufic M・Boston・23 mins ago <br />
                             <Text style={{ fontFamily: 'futura' }}>Praying for all those affected.</Text>
@@ -235,9 +242,9 @@ function FrontPageDesktop() {
                         <TouchableOpacity onPress={() => { Linking.openURL('https://www.instagram.com/solidaritylebanon/') }} style={frontStyle.socialMediaBtn}>
                             <Image source={instagramLogo} style={frontStyle.socialMediaIcon} />
                         </TouchableOpacity>
-                            <TouchableOpacity onPress={() => { Linking.openURL('mailto:INFO@SOLIDARITY.ORG.LB') }} style={frontStyle.socialMediaBtn}>
-                                <Image source={mailLogo} style={frontStyle.socialMediaIcon} />
-                            </TouchableOpacity>
+                        <TouchableOpacity onPress={() => { Linking.openURL('mailto:INFO@SOLIDARITY.ORG.LB') }} style={frontStyle.socialMediaBtn}>
+                            <Image source={mailLogo} style={frontStyle.socialMediaIcon} />
+                        </TouchableOpacity>
                     </View>
                 </View>
 

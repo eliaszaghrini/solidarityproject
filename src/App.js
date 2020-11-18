@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Platform, Dimensions } from 'react-native';
 import FrontPageDesktop from './app/screens/FrontPageDesktop';
 import DonatePageDesktop from './app/screens/DonatePageDesktop';
-import ProgramsPage from './app/screens/ProgramsPage';
+import ProgramsPageDesktop from './app/screens/ProgramsPageDesktop';
+import ProgramsPageTablet from './app/screens/ProgramsPageTablet';
+import ProgramsPagePhone from './app/screens/ProgramsPagePhone';
+import ThankYouPageDesktop from './app/screens/ThankYouPageDesktop';
 import FrontPageTablet from './app/screens/FrontPageTablet';
 import NotFound from './app/screens/NotFound';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch,HashRouter } from 'react-router-dom';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import FrontPagePhone from './app/screens/FrontPagePhone';
@@ -48,7 +51,7 @@ function App() {
             <div>
               <Switch>
                 <Route exact path="/" component={FrontPagePhone} exact />
-                <Route path="/programs" component={ProgramsPage} />
+                <Route path="/programs" component={ProgramsPagePhone} />
                 <Route component={NotFound} /></Switch>
             </div>
           </div>
@@ -61,8 +64,8 @@ function App() {
         <div>
           <Switch>
             <Route exact path="/" component={FrontPageTablet} exact />
-            <Route path="/programs" component={ProgramsPage} />
-            <Route path="/donate" component={ProgramsPage} />
+            <Route path="/programs" component={ProgramsPageTablet} />
+            <Route path="/donate" component={ProgramsPageDesktop} />
             <Route component={NotFound} /></Switch>
         </div>
       </div>
@@ -76,7 +79,7 @@ function App() {
             <div>
               <Switch>
                 <Route exact path="/" component={FrontPageDesktop} exact />
-                <Route path="/programs" component={ProgramsPage} />
+                <Route path="/programs" component={ThankYouPageDesktop} />
                 <Route path="/donate" component={DonatePageDesktop} />
                 <Route component={NotFound} /></Switch>
             </div>

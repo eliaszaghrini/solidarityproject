@@ -1,5 +1,15 @@
 import { StyleSheet } from 'react-native';
 import colors from '../config/colors';
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
+const guidelineBaseWidth = 1440;
+const guidelineBaseHeight = 3005;
+
+const scale = size => width / guidelineBaseWidth * size;
+const verticalScale = size => height / guidelineBaseHeight * size;
+const moderateScale = (size, factor = 0.5) => size + (scale(size) - size) * factor;
 
 export const frontStyle = StyleSheet.create({
     modalTitle: {
@@ -73,7 +83,7 @@ export const frontStyle = StyleSheet.create({
         fontSize: 20,
         marginEnd: 20,
         height: 36,
-        width: 154,
+        width: 115,
         marginTop: 13,
         justifyContent: "center",
         backgroundColor: colors.pinkishRed,
@@ -233,7 +243,7 @@ export const frontStyle = StyleSheet.create({
     body: {
         color: colors.midnight,
         width: "90%",
-        fontFamily: 'futura-light',
+        fontFamily: 'futura',
         fontSize: 18,
         alignSelf: "start",
         marginStart: 40,
@@ -241,12 +251,12 @@ export const frontStyle = StyleSheet.create({
         lineHeight:32
     },
     youtubeVideo: {
-        width: undefined,
+        width: 660,
         height: 334,
+        resizeMode: "contain",
         marginStart: 40,
         marginTop: 20,
         marginBottom:20,
-        backgroundColor: colors.emerald,
     },
     containerSection3: {
         width: "100%",
@@ -359,11 +369,12 @@ export const frontStyle = StyleSheet.create({
         color: colors.midnight,
         height: 60,
         width: 269,
-        textAlign: "center",
         borderColor: colors.midnight,
         borderWidth: 2,
         fontFamily: "futura-condensed-bold",
         fontSize: 22,
-        justifyContent: "center"
+        justifyContent: "center",
+        marginTop:6,
+        paddingLeft:20
     },
 });

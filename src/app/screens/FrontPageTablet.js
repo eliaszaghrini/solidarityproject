@@ -175,7 +175,7 @@ function FrontPageTablet() {
                         <br /><br />This multi-layered human crisis calls for the solidarity of the entire Lebanese diaspora. Please donate today to support our work.
                         <br /><br /><b style={{ fontFamily: 'futura-condensed-bold' }}>Watch a video of the situation in Lebanon below.</b></Text>
                     <View style={frontStyle.youtubeVideo}>
-                        <YoutubeVideo link={"https://youtu.be/08YHVMGcWNk"} />
+                        <YoutubeVideo style={{width:300,}} link={"https://youtu.be/08YHVMGcWNk"} />
                     </View>
                 </View>
 

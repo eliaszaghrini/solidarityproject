@@ -7,7 +7,7 @@ import { creditStyle, donateStyle } from '../globalStyles/desktopDonate';
 import { Sticky, StickyContainer } from 'react-sticky';
 import { Dimensions } from 'react-native';
 import FrontPageDesktop from './FrontPageDesktop';
-import ProgramsPage from './ProgramsPage';
+import ProgramsPage from './ProgramsPageDesktop';
 import FrontPagePhone from './FrontPagePhone';
 import amex from '../assets/images/payments/amex@3x.png';
 import discover from '../assets/images/payments/discover@3x.png';
@@ -117,6 +117,15 @@ function CreditDesktop() {
                 break;
         }
     }
+
+    const [myDonateStyle,setMyDonateStyle]=useState(creditStyle.donateBtnUnchecked);
+
+    const donateBtnStyle=(isValid)=>{
+        if(isValid)
+        setMyDonateStyle(creditStyle.donateBtn);
+        else
+        setMyDonateStyle(creditStyle.donateBtnUnchecked);
+    }
     
     const [isUS, setUS] = useState(false);
     const showState = (value) => {
@@ -143,7 +152,7 @@ function CreditDesktop() {
                     actions.resetForm();
                 }}>
                 {(props) => (
-                    <View onPress={showState(props.values.Country)}>
+                    <View onPress={showState(props.values.Country)} onChangeText={donateBtnStyle(props.isValid)}>
                         <Text style={creditStyle.body}>Please note your card information is not held on our site, it is processed securely using the Salsa Labs gateway. </Text>
                         <View style={{ flexDirection: 'row' }}>
                             <View>
@@ -316,7 +325,7 @@ function CreditDesktop() {
                             </TouchableOpacity>
                             <Text style={[creditStyle.body, { marginStart: 20, marginTop: 30 }]}>Please keep me updated with news from Lebanese Solidarity </Text>
                         </View>
-                        <TouchableOpacity CardNo='Submit' disabled={!props.isValid} onPress={props.handleSubmit} style={creditStyle.donateBtn}>DONATE NOW</TouchableOpacity>
+                        <TouchableOpacity CardNo='Submit' disabled={!props.isValid} onPress={props.handleSubmit} style={myDonateStyle}>DONATE NOW</TouchableOpacity>
                         <Text style={[creditStyle.body, { width: 722, marginTop: 30 }]}>Lebanese Solidarity is a 501(c)(3) charitable organisation and charitable contributions are tax-deductible. For any enquires please contact{" "}
                             <TouchableOpacity onPress={() => { Linking.openURL('mailto:INFO@SOLIDARITY.ORG') }} >
                                 <Text style={{ textDecorationLine: "underline" }}>info@lebanesesolidarity.org</Text>

@@ -3,22 +3,14 @@ import { Image, ImageBackground, Text, Linking, programsStyleheet, View, ScrollV
 import colors from '../config/colors';
 import { Link } from 'react-router-dom';
 import Modal from "modal-enhanced-react-native-web";
-import { programsStyle } from '../globalStyles/desktopPrograms';
+import { programsStyle } from '../globalStyles/tabletPrograms';
 import { Sticky, StickyContainer } from 'react-sticky';
 import { Dimensions } from 'react-native';
 import solidarityLogo from '../assets/images/solidarityLogo/solidarityLogo3x.jpg';
-import backgroundImage from '../assets/images/photos/home_page_cover.jpg';
+import group from '../assets/images/photos/group@3x.jpg';
+import group2 from '../assets/images/photos/group2@3x.jpg';
 
-const { width, height } = Dimensions.get('window');
-
-const guidelineBaseWidth = 1440;
-const guidelineBaseHeight = 3005;
-
-const scale = size => width / guidelineBaseWidth * size;
-const verticalScale = size => height / guidelineBaseHeight * size;
-const moderateScale = (size, factor = 0.5) => size + (scale(size) - size) * factor;
-
-function ProgramsPage() {
+function ProgramsPageTablet() {
 
     const [email, setEmail] = useState('MyMail');
 
@@ -56,9 +48,9 @@ function ProgramsPage() {
                     <br /><br />Each food box (costing USD 30 or LBP 80,000) helps to support our goal of relieving 20,000 undernourished families living below the poverty line.</Text>
                 </View>
 
-                <Image style={programsStyle.picture} source={backgroundImage} />
+                <Image style={programsStyle.picture} source={group2} />
 
-                
+
 
                 <View>
                     <Text style={programsStyle.body}>Above: Food relief is delivered by Solidarity volunteers. </Text>
@@ -68,7 +60,7 @@ function ProgramsPage() {
                     <br /><br />Each food box (costing USD 30 or LBP 80,000) helps to support our goal of relieving 20,000 undernourished families living below the poverty line.</Text>
                 </View>
 
-                <Image style={programsStyle.picture} source={backgroundImage} />
+                <Image style={programsStyle.picture} source={group} />
                 <View>
                     <Text style={programsStyle.body}>Above: Solidarity engineers assess damage from the explosion. </Text>
                     <Text style={programsStyle.subtitle}>LEBANON NEEDS YOUR HELP</Text>
@@ -81,7 +73,7 @@ function ProgramsPage() {
                 <View style={programsStyle.containerFooter}>
                     <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                         <Link to="/getInTouch" style={{ textDecoration: 'none' }}>
-                            <TouchableOpacity style={[programsStyle.footerBtn, { marginStart: scale(80), width: scale(132), }]}>GET IN TOUCH</TouchableOpacity>
+                            <TouchableOpacity style={[programsStyle.footerBtn, { marginStart: 40, width: 132, }]}>GET IN TOUCH</TouchableOpacity>
                         </Link>
                         <Link to="/terms&Conditions" style={{ textDecoration: 'none' }}>
                             <TouchableOpacity style={programsStyle.footerBtn}>TERMS & CONDITIONS</TouchableOpacity>
@@ -127,4 +119,4 @@ function ProgramsPage() {
 
 }
 
-export default ProgramsPage;
+export default ProgramsPageTablet;

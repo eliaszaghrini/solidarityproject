@@ -381,5 +381,63 @@ export const creditStyle = StyleSheet.create({
         justifyContent:"center",
         textAlign:"center",
         marginTop:40
+    },
+    donateBtnUnchecked:{
+        width:341,
+        height:80,
+        backgroundColor:"grey",
+        color:"white",
+        fontFamily:"futura-condensed-bold",
+        fontSize:40,
+        alignItems:'center',
+        justifyContent:"center",
+        textAlign:"center",
+        marginTop:40
     }
+});
+
+export const paypalStyle = StyleSheet.create({
+    container: {
+        marginStart: 160,
+        marginTop: 20,
+        width: 722
+    },
+    cardsImage:{
+        width:319,
+        height:110,
+        resizeMode:'contain'
+    },
+    body:{
+        fontFamily:"futura",
+        color:colors.midnight,
+        fontSize:25,
+        lineHeight:43,
+        marginTop:20,
+        width:767,
+    },
+    paypalButton:{
+        width:288,
+        height:44,
+        marginTop:20
+    }
+});
+
+export const chequeStyle = StyleSheet.create({
+    container: {
+        marginStart: 160,
+        marginTop: 20,
+        width: 722
+    },
+    body:{
+        fontFamily:"futura",
+        color:colors.midnight,
+        fontSize:25,
+        lineHeight:43,
+    },
+    bodyBold:{
+        fontFamily:"futura-condensed-bold",
+        color:colors.midnight,
+        fontSize:25,
+        lineHeight:57,
+    },
 });

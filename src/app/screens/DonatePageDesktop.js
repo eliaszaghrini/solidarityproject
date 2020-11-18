@@ -7,7 +7,8 @@ import { donateStyle } from '../globalStyles/desktopDonate';
 import { Sticky, StickyContainer } from 'react-sticky';
 import { Dimensions } from 'react-native';
 import CreditDesktop from './CreditDesktop';
-import ProgramsPage from './ProgramsPage';
+import PaypalDesktop from './PaypalDesktop';
+import ChequeDesktop from './ChequeDesktop';
 import FrontPagePhone from './FrontPagePhone';
 import amex from '../assets/images/payments/amex@3x.png';
 import discover from '../assets/images/payments/discover@3x.png';
@@ -20,10 +21,13 @@ import { Formik } from 'formik';
 import { Switch } from 'react-view-switch';
 import checkIcon from '../assets/images/payments/checkboxSharp.svg';
 
-function DonatePageDesktop() {
+const DonatePageDesktop = myProps => {
+
+    //const { myString } =
+    //myProps.location.state  ;
 
     const [email, setEmail] = useState('MyMail');
-    const [otherAmmount, setOtherAmmount] = useState('0');
+    const [otherAmmount, setOtherAmmount] = useState(3);
     const [isIncreaseDonationChecked, setIncreaseDonation] = useState(true);
     const [creditBtn, setcreditBtn] = useState(true);
     const [paypalBtn, setpaypalBtn] = useState(false);
@@ -40,10 +44,6 @@ function DonatePageDesktop() {
             setpaypalBtn(false);
             setchequeBtn(false);
         }
-        else {
-            setcreditStyle(donateStyle.creditStyleBtnUnselected);
-            setcreditBtn(false);
-        }
     }
     const paypalStyleBtnPressHandler = () => {
         if (paypalBtn === false) {
@@ -54,10 +54,6 @@ function DonatePageDesktop() {
             setcreditBtn(false);
             setchequeBtn(false);
         }
-        else {
-            setpaypalStyle(donateStyle.paypalStyleBtnUnselected);
-            setpaypalBtn(false);
-        }
     }
     const chequeStyleBtnPressHandler = () => {
         if (chequeBtn === false) {
@@ -67,10 +63,6 @@ function DonatePageDesktop() {
             setchequeBtn(true);
             setpaypalBtn(false);
             setcreditBtn(false);
-        }
-        else {
-            setchequeStyle(donateStyle.chequeStyleBtnUnselected);
-            setchequeBtn(false);
         }
     }
 
@@ -106,7 +98,6 @@ function DonatePageDesktop() {
         }
 
     }
-
     return (
         <View>
 
@@ -133,35 +124,43 @@ function DonatePageDesktop() {
                             <TextInput
                                 style={donateStyle.ammountWindowDonate}
                                 onChangeText={(otherAmmount) => setOtherAmmount(otherAmmount)}
-                                placeholder='$' />
+                                placeholder={10} />
                             <Text style={{ marginStart: 20, marginTop: 41, fontFamily: 'futura-condensed-bold', fontSize: 30, lineHeight: 66 }}>$ - USD</Text>
                         </View>
                         <View style={{ flexDirection: 'row' }}>
                             <TouchableOpacity onPress={() => handleChk()}>
-                                <Image style={[chkStyle, { marginTop: 34, width: 30, height: 30,marginStart:40 }]} source={chkSource} />
+                                <Image style={[chkStyle, { marginTop: 34, width: 30, height: 30, marginStart: 40 }]} source={chkSource} />
                             </TouchableOpacity>
-                            <Text style={[donateStyle.descriptionDonationWindow,{width:212,marginStart:20}]}>Increase my donation amount to cover fees.</Text>
+                            <Text style={[donateStyle.descriptionDonationWindow, { width: 212, marginStart: 20 }]}>Increase my donation amount to cover fees.</Text>
                         </View>
                     </View>
-
                 </View>
-
+                <h3>State Value: {myProps.location?.state?.test}</h3>
                 <View>
                     <Text style={[donateStyle.title, { marginTop: 50, marginStart: 159 }]}>PAYMENT METHOD</Text>
                     <Router>
                         <View style={{ flexDirection: 'row' }}>
-                            <View style={creditStyle}>
-                                <NavLink to='/donate/creditordebit'>
+                            <TouchableOpacity style={creditStyle} onPress={() => creditStyleBtnPressHandler()}>
+                                <NavLink to='/donate/creditordebit' style={{ width: 300, height: 60 }}>
                                     CREDIT/DEBIT CARD
-                            </NavLink>
-                            </View>
-                            <NavLink to='/donate/paypal' activeStyle={donateStyle.paypalStyleBtnUnselected} >
-                                <View style={paypalStyle} >PAYPAL</View>
-                            </NavLink>
+                                </NavLink>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={paypalStyle} onPress={() => paypalStyleBtnPressHandler()}>
+                                <NavLink to='/donate/paypal' style={{ width: 150, height: 60, position: "absolute", textDecoration: "none", textDecorationColor: "none" }}>
+                                    PAYPAL
+                                </NavLink>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={paypalStyle} onPress={() => chequeStyleBtnPressHandler()}>
+                                <NavLink to='/donate/cheque_or_bank_transfer' style={{ width: 150, height: 60, position: "absolute", textDecoration: "none", textDecorationColor: "none" }}>
+                                CHEQUE / BANK TRANSFER
+                                </NavLink>
+                            </TouchableOpacity>
+
                         </View>
 
                         <Route path="/donate/creditordebit" component={CreditDesktop}></Route>
-                        <Route path="/donate/paypal" component={ProgramsPage}></Route>
+                        <Route path="/donate/paypal" component={PaypalDesktop}></Route>
+                        <Route path="/donate/cheque_or_bank_transfer" component={ChequeDesktop}></Route>
                     </Router>
                 </View>
 
