@@ -16,23 +16,37 @@ import * as yup from 'yup';
 import { Card, Checkbox, OutlinedInput, StylesProvider } from '@material-ui/core';
 import checkIcon from '../assets/images/payments/checkboxSharp.svg';
 import { countries, states } from '../config/arrays';
+import axios from 'axios';
 
 const stripePromise = loadStripe("pk_test_51HpIITEORKIe0wKgSTNrAvE4ZyzUfruMGYIpv0fyMol0cyIv2cBCU4ReJZelByXwF8zQzUIyFbeobGQlsu5JqeME00G3ndOPFn");
 const CheckoutForm = () => {
     const stripe = useStripe();
-    const handleSubmit=async(event)=>{
+    const elements = useElements();
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        try{
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: elements.getElement(CardElement),
+        });
 
-        }catch(error){
-            console.log(error);
+        if (!error) {
+            const { id } = paymentMethod;
+
+            try {
+                const { data } = await axios.post("/api/charge", { id, amount: 1000 });
+                console.log(data);
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }
+
+    };
 
     return (
         <form onSubmit={handleSubmit}>
-            <CardElement/>
+            <CardElement />
             <button type="submit" disabled={!stripe}>
                 Pay
             </button>
@@ -89,9 +103,9 @@ const ReviewSchema = yup.object({
 function CreditDesktop(myProps) {
     const [otherAmmount, setOtherAmmount] = useState(myProps.location?.state?.ammount)
 
-useEffect(() => {
-setOtherAmmount(myProps.location?.state?.ammount);
-});
+    useEffect(() => {
+        setOtherAmmount(myProps.location?.state?.ammount);
+    });
     const [isChecked2, setChecked2] = useState(false);
     const [chkSource2, setChkSource2] = useState();
     const [chkStyle2, setChkStyle2] = useState(creditStyle.chkUnchecked);
