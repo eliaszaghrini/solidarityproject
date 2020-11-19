@@ -19,7 +19,7 @@ export const donateStyle = StyleSheet.create({
         fontSize: 60,
         fontFamily: 'futura-condensed-bold',
         marginStart: 40,
-        color:colors.midnight,
+        color: colors.midnight,
         lineHeight: 72
     },
     topBar: {
@@ -85,6 +85,7 @@ export const donateStyle = StyleSheet.create({
         height: 66,
         width: 156,
         textAlign: "left",
+        paddingStart: 20,
         borderColor: colors.pinkishRed,
         marginTop: 45,
         borderWidth: 3,
@@ -96,8 +97,6 @@ export const donateStyle = StyleSheet.create({
         width: 250,
         height: 60,
         borderWidth: 2,
-        fontSize: 25,
-        fontFamily: 'futura-condensed-bold',
         borderColor: colors.midnight,
         color: colors.midnight,
         marginStart: 159,
@@ -108,9 +107,6 @@ export const donateStyle = StyleSheet.create({
     creditStyleBtnSelected: {
         width: 250,
         height: 60,
-        fontSize: 25,
-        fontFamily: 'futura-condensed-bold',
-        color: "white",
         backgroundColor: colors.emerald,
         marginStart: 159,
         marginTop: 42,
@@ -121,8 +117,6 @@ export const donateStyle = StyleSheet.create({
         width: 141,
         height: 60,
         borderWidth: 2,
-        fontSize: 25,
-        fontFamily: 'futura-condensed-bold',
         borderColor: colors.midnight,
         color: colors.midnight,
         marginStart: 20,
@@ -133,9 +127,6 @@ export const donateStyle = StyleSheet.create({
     paypalStyleBtnSelected: {
         width: 141,
         height: 60,
-        fontSize: 25,
-        fontFamily: 'futura-condensed-bold',
-        color: "white",
         backgroundColor: colors.emerald,
         marginStart: 20,
         marginTop: 42,
@@ -143,35 +134,40 @@ export const donateStyle = StyleSheet.create({
         justifyContent: 'center'
     },
     chequeStyleBtnUnselected: {
-        width: 250,
+        width: 310,
         height: 60,
         borderWidth: 2,
-        fontSize: 25,
-        fontFamily: 'futura-condensed-bold',
         borderColor: colors.midnight,
         color: colors.midnight,
-        marginStart: 159,
+        marginStart: 20,
         marginTop: 42,
+        justifyContent: 'center',
         textAlign: "center",
-        justifyContent: 'center'
     },
     chequeStyleBtnSelected: {
-        width: 250,
+        width: 310,
         height: 60,
+        backgroundColor: colors.emerald,
+        marginStart: 20,
+        marginTop: 42,
+        justifyContent: 'center',
+        textAlign: "center",
+    },
+    textSelected: {
         fontSize: 25,
         fontFamily: 'futura-condensed-bold',
         color: "white",
-        backgroundColor: colors.emerald,
-        marginStart: 159,
-        marginTop: 42,
-        textAlign: "center",
-        justifyContent: 'center'
+    },
+    textUnselected: {
+        fontSize: 25,
+        fontFamily: 'futura-condensed-bold',
+        color: colors.midnight,
     },
     subtitle: {
         color: colors.midnight,
         marginStart: 120,
         fontFamily: 'futura-condensed-bold',
-        color:colors.midnight,
+        color: colors.midnight,
         fontSize: 40,
         alignSelf: "start",
         lineHeight: 72,
@@ -190,7 +186,7 @@ export const donateStyle = StyleSheet.create({
     descriptionDonationWindow: {
         width: 464,
         fontFamily: 'futura-condensed-bold',
-        color:colors.midnight,
+        color: colors.midnight,
         fontSize: 25,
         marginStart: 40,
         marginTop: 30
@@ -265,16 +261,16 @@ export const donateStyle = StyleSheet.create({
         fontSize: 24,
         justifyContent: "center"
     },
-    chkUnchecked:{
-        width:20,
-        height:20,
-        borderWidth:2,
-        borderColor:colors.midnight,
+    chkUnchecked: {
+        width: 20,
+        height: 20,
+        borderWidth: 2,
+        borderColor: colors.midnight,
     },
-    chkChecked:{
-        width:20,
-        height:20,
-        borderColor:colors.midnight,
+    chkChecked: {
+        width: 20,
+        height: 20,
+        borderColor: colors.midnight,
     },
 });
 
@@ -290,109 +286,109 @@ export const creditStyle = StyleSheet.create({
         resizeMode: "contain",
         marginStart: 20
     },
-    body:{
-        fontFamily:"futura",
-        color:colors.midnight,
-        fontSize:25,
-        lineHeight:43,
-        marginTop:17
+    body: {
+        fontFamily: "futura",
+        color: colors.midnight,
+        fontSize: 25,
+        lineHeight: 43,
+        marginTop: 17
     },
-    boxDescription:{
-        fontFamily:"futura-condensed-bold",
-        color:colors.midnight,
-        fontSize:25,
-        lineHeight:57,
-        marginTop:20
+    boxDescription: {
+        fontFamily: "futura-condensed-bold",
+        color: colors.midnight,
+        fontSize: 25,
+        lineHeight: 57,
+        marginTop: 20
     },
-    inputText:{
-        width:341,
-        height:60,
-        borderWidth:2,
-        borderColor:"grey",
-        fontFamily:"futura-condensed-bold",
-        color:colors.midnight,
-        fontSize:25,
-        lineHeight:57,
-        paddingStart:20,
-        outline:'none'
+    inputText: {
+        width: 341,
+        height: 60,
+        borderWidth: 2,
+        borderColor: "grey",
+        fontFamily: "futura-condensed-bold",
+        color: colors.midnight,
+        fontSize: 25,
+        lineHeight: 57,
+        paddingStart: 20,
+        outline: 'none'
     },
-    errors:{
-        fontFamily:"futura",
-        fontSize:20,
-        lineHeight:57,
-        color:colors.pinkishRed,
-        marginStart:20
+    errors: {
+        fontFamily: "futura",
+        fontSize: 20,
+        lineHeight: 57,
+        color: colors.pinkishRed,
+        marginStart: 20
     },
     title: {
         height: 62,
         marginTop: 50,
         fontSize: 60,
-        color:colors.midnight,
+        color: colors.midnight,
         fontFamily: 'futura-condensed-bold',
         lineHeight: 72
     },
-    select:{
-        width:341,
-        height:60,
-        borderWidth:2,
-        borderColor:"grey",
-        fontFamily:"futura-condensed-bold",
-        color:colors.midnight,
-        fontSize:25,
-        lineHeight:57,
-        paddingStart:20,
-        outline:'none'
+    select: {
+        width: 341,
+        height: 60,
+        borderWidth: 2,
+        borderColor: "grey",
+        fontFamily: "futura-condensed-bold",
+        color: colors.midnight,
+        fontSize: 25,
+        lineHeight: 57,
+        paddingStart: 20,
+        outline: 'none'
     },
-    messageContainer:{
-        borderColor:"grey",
-        borderWidth:2,
-        width:722,
-        height:142
+    messageContainer: {
+        borderColor: "grey",
+        borderWidth: 2,
+        width: 722,
+        height: 142
     },
-    inputMessage:{
-        width:"100%",
-        height:68,
-        fontFamily:"futura-condensed-bold",
-        color:colors.midnight,
-        fontSize:25,
-        lineHeight:57,
-        paddingStart:20,
-        marginTop:10
+    inputMessage: {
+        width: "100%",
+        height: 68,
+        fontFamily: "futura-condensed-bold",
+        color: colors.midnight,
+        fontSize: 25,
+        lineHeight: 57,
+        paddingStart: 20,
+        marginTop: 10
     },
-    chkUnchecked:{
-        width:20,
-        height:20,
-        borderWidth:2,
-        borderColor:colors.midnight,
+    chkUnchecked: {
+        width: 20,
+        height: 20,
+        borderWidth: 2,
+        borderColor: colors.midnight,
     },
-    chkChecked:{
-        width:20,
-        height:20,
-        borderColor:colors.midnight,
+    chkChecked: {
+        width: 20,
+        height: 20,
+        borderColor: colors.midnight,
     },
-    donateBtn:{
-        width:341,
-        height:80,
-        backgroundColor:colors.pinkishRed,
-        color:"white",
-        fontFamily:"futura-condensed-bold",
-        fontSize:40,
-        alignItems:'center',
-        justifyContent:"center",
-        textAlign:"center",
-        marginTop:40
+    donateBtn: {
+        width: 341,
+        height: 80,
+        backgroundColor: colors.pinkishRed,
+        color: "white",
+        fontFamily: "futura-condensed-bold",
+        fontSize: 40,
+        alignItems: 'center',
+        justifyContent: "center",
+        textAlign: "center",
+        marginTop: 40
     },
-    donateBtnUnchecked:{
-        width:341,
-        height:80,
-        backgroundColor:"grey",
-        color:"white",
-        fontFamily:"futura-condensed-bold",
-        fontSize:40,
-        alignItems:'center',
-        justifyContent:"center",
-        textAlign:"center",
-        marginTop:40
+    donateBtnUnchecked: {
+        width: 341,
+        height: 80,
+        backgroundColor: "grey",
+        color: "white",
+        fontFamily: "futura-condensed-bold",
+        fontSize: 40,
+        alignItems: 'center',
+        justifyContent: "center",
+        textAlign: "center",
+        marginTop: 40
     }
 });
 
@@ -402,23 +398,23 @@ export const paypalStyle = StyleSheet.create({
         marginTop: 20,
         width: 722
     },
-    cardsImage:{
-        width:319,
-        height:110,
-        resizeMode:'contain'
+    cardsImage: {
+        width: 319,
+        height: 110,
+        resizeMode: 'contain'
     },
-    body:{
-        fontFamily:"futura",
-        color:colors.midnight,
-        fontSize:25,
-        lineHeight:43,
-        marginTop:20,
-        width:767,
+    body: {
+        fontFamily: "futura",
+        color: colors.midnight,
+        fontSize: 25,
+        lineHeight: 43,
+        marginTop: 20,
+        width: 767,
     },
-    paypalButton:{
-        width:288,
-        height:44,
-        marginTop:20
+    paypalButton: {
+        width: 288,
+        height: 44,
+        marginTop: 20
     }
 });
 
@@ -428,16 +424,16 @@ export const chequeStyle = StyleSheet.create({
         marginTop: 20,
         width: 722
     },
-    body:{
-        fontFamily:"futura",
-        color:colors.midnight,
-        fontSize:25,
-        lineHeight:43,
+    body: {
+        fontFamily: "futura",
+        color: colors.midnight,
+        fontSize: 25,
+        lineHeight: 43,
     },
-    bodyBold:{
-        fontFamily:"futura-condensed-bold",
-        color:colors.midnight,
-        fontSize:25,
-        lineHeight:57,
+    bodyBold: {
+        fontFamily: "futura-condensed-bold",
+        color: colors.midnight,
+        fontSize: 25,
+        lineHeight: 57,
     },
 });

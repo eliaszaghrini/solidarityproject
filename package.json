@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.11.0",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
+    "axios": "^0.21.0",
     "expo": "^39.0.4",
     "expo-font": "^8.3.0",
     "formik": "^2.2.5",
@@ -23,6 +26,7 @@
     "react-share": "^4.3.1",
     "react-sticky": "^6.0.3",
     "react-view-switch": "^0.2.0",
+    "stripe": "^8.124.0",
     "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4",
     "yup": "^0.29.3"

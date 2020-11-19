@@ -25,7 +25,7 @@ import * as Scroll from 'react-scroll';
 
 var scroll = Scroll.animateScroll;
 
-function ThankYouPageDesktop() {
+function ThankYouPageDesktop(props) {
     const [email, setEmail] = useState('MyMail');
 
     return (
@@ -38,7 +38,7 @@ function ThankYouPageDesktop() {
                         <Image style={thankYouStyle.logo} source={solidarityLogo} />
                     </Link>
                     <View style={thankYouStyle.containerTopBar}>
-                        <TouchableOpacity style={[thankYouStyle.topOptionsBtn, { marginEnd: 80, width: 122 }]}>
+                        <TouchableOpacity style={thankYouStyle.topOptionsBtn}>
                             <Link to="/" style={{ textDecoration: 'none', color: colors.midnight }}>RETURN TO HOME</Link>
                         </TouchableOpacity>
                     </View>
@@ -47,13 +47,10 @@ function ThankYouPageDesktop() {
                 <ImageBackground
                     style={thankYouStyle.coverBackground}
                     source={backgroundImage}>
-                    <View style={thankYouStyle.windowDonate}>
-                        <Text style={thankYouStyle.titleWindowDonate}>HELP REBUILD BEIRUT & FEED FAMILIES </Text>
-                        <Text style={thankYouStyle.descriptionWindowDonate}>Could provide a week of food boxes for one family.</Text>
-                        <Text style={thankYouStyle.latestDonationWindowDonate}>
-                            <Text style={{ color: colors.emerald }}>$125</Text>・Toufic M・Boston・23 mins ago <br />
-                            <Text style={{ fontFamily: 'futura' }}>Praying for all those affected.</Text>
-                        </Text>
+                    <View style={thankYouStyle.windowThanks}>
+                        <Text style={thankYouStyle.titleWindowThanks}>THANK YOU FOR DONATING</Text>
+                        <Text style={thankYouStyle.descriptionBold}>Your generous gift will help feed families and rebuild homes. Together we are making a difference.</Text>
+                        <Text style={thankYouStyle.description}>A receipt with details of your donation has been sent to {props.location?.state?.email}.</Text>
                     </View>
                 </ImageBackground>
 
@@ -106,7 +103,7 @@ function ThankYouPageDesktop() {
                                 <Image style={thankYouStyle.logo} source={solidarityLogo} />
                             </Link>
                             <View style={thankYouStyle.containerTopBar}>
-                                <TouchableOpacity style={[thankYouStyle.topOptionsBtn, { marginEnd: 80, width: 122 }]}>
+                                <TouchableOpacity style={thankYouStyle.topOptionsBtn}>
                                     <Link to="/" style={{ textDecoration: 'none', color: colors.midnight }}>RETURN TO HOME</Link>
                                 </TouchableOpacity>
                             </View>

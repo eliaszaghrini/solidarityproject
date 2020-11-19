@@ -23,16 +23,16 @@ import checkIcon from '../assets/images/payments/checkboxSharp.svg';
 
 const DonatePageDesktop = myProps => {
 
-    //const { myString } =
-    //myProps.location.state  ;
-
     const [email, setEmail] = useState('MyMail');
-    const [otherAmmount, setOtherAmmount] = useState(3);
+    const [otherAmmount, setOtherAmmount] = useState(myProps.location?.state?.ammount);
     const [isIncreaseDonationChecked, setIncreaseDonation] = useState(true);
-    const [creditBtn, setcreditBtn] = useState(true);
+    const[textStyleCredit,setTextStyleCredit]=useState(donateStyle.textUnselected);
+    const[textStylePaypal,setTextStylePaypal]=useState(donateStyle.textUnselected);
+    const[textStyleCheque,setTextStyleCheque]=useState(donateStyle.textUnselected);
+    const [creditBtn, setcreditBtn] = useState(false);
     const [paypalBtn, setpaypalBtn] = useState(false);
     const [chequeBtn, setchequeBtn] = useState(false);
-    const [creditStyle, setcreditStyle] = useState(donateStyle.creditStyleBtnSelected);
+    const [creditStyle, setcreditStyle] = useState(donateStyle.creditStyleBtnUnselected);
     const [paypalStyle, setpaypalStyle] = useState(donateStyle.paypalStyleBtnUnselected);
     const [chequeStyle, setchequeStyle] = useState(donateStyle.chequeStyleBtnUnselected);
     const creditStyleBtnPressHandler = () => {
@@ -40,6 +40,9 @@ const DonatePageDesktop = myProps => {
             setcreditStyle(donateStyle.creditStyleBtnSelected);
             setpaypalStyle(donateStyle.paypalStyleBtnUnselected);
             setchequeStyle(donateStyle.chequeStyleBtnUnselected);
+            setTextStyleCredit(donateStyle.textSelected);
+            setTextStylePaypal(donateStyle.textUnselected);
+            setTextStyleCheque(donateStyle.textUnselected);
             setcreditBtn(true);
             setpaypalBtn(false);
             setchequeBtn(false);
@@ -50,6 +53,9 @@ const DonatePageDesktop = myProps => {
             setpaypalStyle(donateStyle.paypalStyleBtnSelected);
             setcreditStyle(donateStyle.creditStyleBtnUnselected);
             setchequeStyle(donateStyle.chequeStyleBtnUnselected);
+            setTextStyleCredit(donateStyle.textUnselected);
+            setTextStylePaypal(donateStyle.textSelected);
+            setTextStyleCheque(donateStyle.textUnselected);
             setpaypalBtn(true);
             setcreditBtn(false);
             setchequeBtn(false);
@@ -60,6 +66,9 @@ const DonatePageDesktop = myProps => {
             setchequeStyle(donateStyle.chequeStyleBtnSelected);
             setpaypalStyle(donateStyle.paypalStyleBtnUnselected);
             setcreditStyle(donateStyle.creditStyleBtnUnselected);
+            setTextStyleCredit(donateStyle.textUnselected);
+            setTextStylePaypal(donateStyle.textUnselected);
+            setTextStyleCheque(donateStyle.textSelected);
             setchequeBtn(true);
             setpaypalBtn(false);
             setcreditBtn(false);
@@ -124,7 +133,8 @@ const DonatePageDesktop = myProps => {
                             <TextInput
                                 style={donateStyle.ammountWindowDonate}
                                 onChangeText={(otherAmmount) => setOtherAmmount(otherAmmount)}
-                                placeholder={10} />
+                                placeholder='AMOUNT'
+                                defaultValue={myProps.location?.state?.ammount} />
                             <Text style={{ marginStart: 20, marginTop: 41, fontFamily: 'futura-condensed-bold', fontSize: 30, lineHeight: 66 }}>$ - USD</Text>
                         </View>
                         <View style={{ flexDirection: 'row' }}>
@@ -135,36 +145,44 @@ const DonatePageDesktop = myProps => {
                         </View>
                     </View>
                 </View>
-                <h3>State Value: {myProps.location?.state?.test}</h3>
                 <View>
                     <Text style={[donateStyle.title, { marginTop: 50, marginStart: 159 }]}>PAYMENT METHOD</Text>
                     <Router>
                         <View style={{ flexDirection: 'row' }}>
                             <TouchableOpacity style={creditStyle} onPress={() => creditStyleBtnPressHandler()}>
-                                <NavLink to='/donate/creditordebit' style={{ width: 300, height: 60 }}>
-                                    CREDIT/DEBIT CARD
+                                <NavLink to={{
+                                pathname: "/donate/credit_or_debit",
+                                state: { ammount: otherAmmount }
+                            }}style={{ textDecoration: "none", width:"100%",}}>
+                                    <Text style={textStyleCredit}>
+                                        CREDIT/DEBIT CARD
+                                    </Text>
                                 </NavLink>
                             </TouchableOpacity>
                             <TouchableOpacity style={paypalStyle} onPress={() => paypalStyleBtnPressHandler()}>
-                                <NavLink to='/donate/paypal' style={{ width: 150, height: 60, position: "absolute", textDecoration: "none", textDecorationColor: "none" }}>
-                                    PAYPAL
+                                <NavLink to='/donate/paypal' style={{ textDecoration: "none" }}>
+                                    <Text style={textStylePaypal}>
+                                        PAYPAL
+                                    </Text>
                                 </NavLink>
                             </TouchableOpacity>
-                            <TouchableOpacity style={paypalStyle} onPress={() => chequeStyleBtnPressHandler()}>
-                                <NavLink to='/donate/cheque_or_bank_transfer' style={{ width: 150, height: 60, position: "absolute", textDecoration: "none", textDecorationColor: "none" }}>
-                                CHEQUE / BANK TRANSFER
+                            <TouchableOpacity style={chequeStyle} onPress={() => chequeStyleBtnPressHandler()}>
+                                <NavLink to='/donate/cheque_or_bank_transfer' style={{ textDecoration: "none" }}>
+                                    <Text style={textStyleCheque}>
+                                        CHEQUE / BANK TRANSFER
+                                </Text>
                                 </NavLink>
                             </TouchableOpacity>
 
                         </View>
 
-                        <Route path="/donate/creditordebit" component={CreditDesktop}></Route>
+                        <Route path="/donate/credit_or_debit" component={CreditDesktop}></Route>
                         <Route path="/donate/paypal" component={PaypalDesktop}></Route>
                         <Route path="/donate/cheque_or_bank_transfer" component={ChequeDesktop}></Route>
                     </Router>
                 </View>
 
-                <View style={donateStyle.containerSection6}>
+                <View style={donateStyle.containerFooter}>
                     <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
                         <Link to="/getInTouch" style={{ textDecoration: 'none' }}>
                             <TouchableOpacity style={[donateStyle.footerBtn, { marginStart: 80, width: 132, }]}>GET IN TOUCH</TouchableOpacity>

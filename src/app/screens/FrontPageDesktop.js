@@ -1,5 +1,5 @@
-import React, { useState, Component } from 'react';
-import { Image, ImageBackground, Text, Linking, frontStyleheet, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState, Component, useEffect, useCallback } from 'react';
+import { Image, ImageBackground, Text, Linking, Button, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import colors from '../config/colors';
 import { Link } from 'react-router-dom';
 import Modal from "modal-enhanced-react-native-web";
@@ -23,16 +23,20 @@ import gilbertLogo from '../assets/images/other/group8@3x.jpg';
 import { Link as MyLink } from 'react-scroll';
 import * as Scroll from 'react-scroll';
 
-var scroll = Scroll.animateScroll;
-
+const money=[125,23,600,2,20,12,25,75,130,200,10,1000];
+    const names = ['Toufic M', 'John M', 'Charbel S','Francois R','Mike A','Ahmed Y','Benjamin J','Dimitri Y','Mariane D','Jean A','Craig F','Michael J'];
+    const region=['Boston','New York','Beirut','Lyon','Boston','Cairo','San Francisco','Montreal','Paris','Nantes','Big Sur','Dallas'];
+    const minutes=['29','40','52','12','67','2','56','9','36','45','66','80'];
+    const message=['Praying for all those affected.','For Beirut','Giving some hope',"De beaux jours vous attendent.",'','Li Beirut','For the people of Lebanon','','Nous sommes a vos cotes','','Sending some Love!']
+        
 function FrontPageDesktop() {
     const [myString, setMyString] = useState("hello");
-    const [modalOpen, setModalOpen] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
     const [btn1Donate, setBtn1Donate] = useState(false);
     const [btn2Donate, setBtn2Donate] = useState(false);
     const [btn3Donate, setBtn3Donate] = useState(false);
     const [email, setEmail] = useState('MyMail');
-    const [otherAmmount, setOtherAmmount] = useState('0');
+    const [otherAmmount, setOtherAmmount] = useState('');
     const [btn1Style, setBtn1Style] = useState(frontStyle.donateBtnUnselected);
     const [btn2Style, setBtn2Style] = useState(frontStyle.donateBtnUnselected);
     const [btn3Style, setBtn3Style] = useState(frontStyle.donateBtnUnselected);
@@ -44,10 +48,12 @@ function FrontPageDesktop() {
             setBtn1Donate(true);
             setBtn2Donate(false);
             setBtn3Donate(false);
+            setOtherAmmount(25);
         }
         else {
             setBtn1Style(frontStyle.donateBtnUnselected);
             setBtn1Donate(false);
+            setOtherAmmount('');
         }
     }
     const btn2PressHandler = () => {
@@ -58,10 +64,12 @@ function FrontPageDesktop() {
             setBtn2Donate(true);
             setBtn1Donate(false);
             setBtn3Donate(false);
+            setOtherAmmount(75);
         }
         else {
             setBtn2Style(frontStyle.donateBtnUnselected);
             setBtn2Donate(false);
+            setOtherAmmount('');
         }
     }
     const btn3PressHandler = () => {
@@ -72,12 +80,41 @@ function FrontPageDesktop() {
             setBtn3Donate(true);
             setBtn2Donate(false);
             setBtn1Donate(false);
+            setOtherAmmount(125);
         }
         else {
             setBtn3Style(frontStyle.donateBtnUnselected);
             setBtn3Donate(false);
+            setOtherAmmount('');
         }
     }
+
+
+    const [newMoney, setNewMoney] = useState("3000");
+    const [newName, setnewName] = useState("Carmen S");
+    const [newRegion, setNewRegion] = useState("UAE");
+    const [newMinutes, setNewMinutes] = useState("17");
+    const [newMessage, setNewMessage] = useState("");
+
+    const shuffle = useCallback(() => {
+        const index = Math.floor(Math.random() * names.length);
+        setnewName(names[index]);
+        setNewMessage(message[index]);
+        setNewMoney(money[index]);
+        setNewRegion(region[index]);
+        setNewMinutes(minutes[index]);
+    }, []);
+
+    useEffect(() => {
+        if (increment === 0) {
+            setTimeout(() => { setModalOpen(true) }, 10000);
+            setIncrement(1);
+        }
+        const intervalID = setInterval(shuffle, 7000);
+        return () => clearInterval(intervalID);
+    }, [shuffle])
+
+    const [increment, setIncrement] = useState(0)
 
     return (
         <View>
@@ -111,9 +148,8 @@ function FrontPageDesktop() {
                 </View>
             </Modal>
 
-            <StickyContainer>
-
-                <View style={frontStyle.topBar}>
+            <StickyContainer >
+                <View style={frontStyle.topBar} >
                     <Link to="/" style={{ textDecoration: 'none' }}>
                         <Image style={frontStyle.logo} source={solidarityLogo} />
                     </Link>
@@ -156,18 +192,22 @@ function FrontPageDesktop() {
                         <TextInput
                             style={frontStyle.ammountWindowDonate}
                             onChangeText={(otherAmmount) => setOtherAmmount(otherAmmount)}
-                            placeholder='$ - OTHER AMOUNT' />
-                        <Link
-                            to={{
+                            placeholder='$ - OTHER AMOUNT'
+                            value={otherAmmount} />
+                        <TouchableOpacity style={frontStyle.donateBtnWindowDonate}>
+                            <Link to={{
                                 pathname: "/donate",
-                                state: { test: "hey" }
+                                state: { ammount: otherAmmount }
                             }}
-                            style={{ textDecoration: 'none' }}>
-                            <TouchableOpacity style={frontStyle.donateBtnWindowDonate}>DONATE NOW</TouchableOpacity>
-                        </Link>
+                                style={{ textDecoration: 'none' }}>
+                                <Text style={{ fontFamily: 'futura-condensed-bold', fontSize: 40, color: "white", alignSelf: 'center', marginStart: 20 }}>
+                                    DONATE NOW
+                                </Text>
+                            </Link>
+                        </TouchableOpacity>
                         <Text style={frontStyle.latestDonationWindowDonate}>
-                            <Text style={{ color: colors.emerald }}>$125</Text>・Toufic M・Boston・23 mins ago <br />
-                            <Text style={{ fontFamily: 'futura' }}>Praying for all those affected.</Text>
+                        <Text style={{ color: colors.emerald }}>${newMoney}</Text>・{newName}・{newRegion}・{newMinutes} mins ago <br />
+                        <Text style={{ fontFamily: 'futura' }}>{newMessage}</Text>
                         </Text>
                     </View>
                     <View style={frontStyle.backgroundGraphicCover}>
@@ -198,12 +238,12 @@ function FrontPageDesktop() {
                         <br /><br /><Text style={{ color: "white", fontFamily: 'futura-condensed-bold', fontSize: 25 }}>• Reconstructing hundreds of homes damaged by the Beirut blast. </Text>
                         <br /><br /><Text style={{ color: "white", fontFamily: 'futura-condensed-bold', fontSize: 25 }}>• Assisting key healthcare professionals and institutions that are fighting the Covid–19 pandemic.</Text>
                     </Text>
-                    <Link to="/programs" style={{ textDecoration: 'none' }}>
-                        <TouchableOpacity style={frontStyle.learnMoreBtn}>
+                    <TouchableOpacity style={[frontStyle.learnMoreBtn, { alignItems: "center", justifyContent: "center" }]}>
+                        <Link to="/programs" style={{ textDecoration: 'none', }}>
                             <Text style={{ fontFamily: 'futura-condensed-bold', fontSize: 25, color: colors.emerald, alignSelf: 'center', marginStart: 20 }}>LEARN MORE</Text>
-                            <Image source={backArrow} style={{ width: 11, height: 18, resizeMode: 'contain', alignSelf: 'center', marginStart: 20 }} />
-                        </TouchableOpacity>
-                    </Link>
+                        </Link>
+                        <Image source={backArrow} style={{ width: 11, height: 18, resizeMode: 'contain', alignSelf: 'center', marginStart: 20 }} />
+                    </TouchableOpacity>
                 </View>
 
                 <View>

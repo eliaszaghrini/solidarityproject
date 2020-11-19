@@ -1,14 +1,11 @@
-import React, { useState, Component } from 'react';
+import React, { useState, Component, useEffect } from 'react';
 import { Image, Check, Text, Button, View, ScrollView, TouchableOpacity, TextInput, Linking } from 'react-native';
 import colors from '../config/colors';
 import { Link, Switch, Route, BrowserRouter as Router, NavLink } from 'react-router-dom';
-import { } from 'react-router-dom';
+import { } from 'react-router';
 import { creditStyle, donateStyle } from '../globalStyles/desktopDonate';
-import { Sticky, StickyContainer } from 'react-sticky';
-import { Dimensions } from 'react-native';
-import FrontPageDesktop from './FrontPageDesktop';
-import ProgramsPage from './ProgramsPageDesktop';
-import FrontPagePhone from './FrontPagePhone';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import amex from '../assets/images/payments/amex@3x.png';
 import discover from '../assets/images/payments/discover@3x.png';
 import mastercard from '../assets/images/payments/mastercard@3x.png';
@@ -16,9 +13,35 @@ import visadebit from '../assets/images/payments/visaDebit@3x.png';
 import solidarityLogo from '../assets/images/solidarityLogo/solidarityLogo3x.jpg';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { Checkbox, OutlinedInput, StylesProvider } from '@material-ui/core';
+import { Card, Checkbox, OutlinedInput, StylesProvider } from '@material-ui/core';
 import checkIcon from '../assets/images/payments/checkboxSharp.svg';
 import { countries, states } from '../config/arrays';
+
+const stripePromise = loadStripe("pk_test_51HpIITEORKIe0wKgSTNrAvE4ZyzUfruMGYIpv0fyMol0cyIv2cBCU4ReJZelByXwF8zQzUIyFbeobGQlsu5JqeME00G3ndOPFn");
+const CheckoutForm = () => {
+    const stripe = useStripe();
+    const handleSubmit=async(event)=>{
+        event.preventDefault();
+
+        try{
+
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <CardElement/>
+            <button type="submit" disabled={!stripe}>
+                Pay
+            </button>
+        </form>
+    );
+};
+
+
+
 
 const ReviewSchema = yup.object({
     CardNo: yup.string()
@@ -55,15 +78,20 @@ const ReviewSchema = yup.object({
 
     Email: yup.string()
         .required(),
+
+    DonationAmmount: yup.string()
+        .required()
+        .test('there-is-an-ammount', 'Enter an ammount', (val) => {
+            return parseInt(val).toString().length >= 1;
+        }),
 })
 
-function CreditDesktop() {
-    const [myCountry, setCountry] = useState("hey");
+function CreditDesktop(myProps) {
+    const [otherAmmount, setOtherAmmount] = useState(myProps.location?.state?.ammount)
 
-    const [isChecked1, setChecked1] = useState(false);
-    const [chkSource1, setChkSource1] = useState();
-    const [chkStyle1, setChkStyle1] = useState(creditStyle.chkUnchecked);
-
+useEffect(() => {
+setOtherAmmount(myProps.location?.state?.ammount);
+});
     const [isChecked2, setChecked2] = useState(false);
     const [chkSource2, setChkSource2] = useState();
     const [chkStyle2, setChkStyle2] = useState(creditStyle.chkUnchecked);
@@ -74,19 +102,6 @@ function CreditDesktop() {
 
     const handleChk = (key) => {
         switch (key) {
-            case 1:
-                if (isChecked1) {
-                    setChkSource1();
-                    setChecked1(false);
-                    setChkStyle1(creditStyle.chkUnchecked);
-                }
-                else {
-                    setChkSource1(checkIcon);
-                    setChecked1(true);
-                    setChkStyle1(creditStyle.chkChecked);
-                }
-                break;
-
             case 2:
                 if (isChecked2) {
                     setChkSource2();
@@ -118,15 +133,15 @@ function CreditDesktop() {
         }
     }
 
-    const [myDonateStyle,setMyDonateStyle]=useState(creditStyle.donateBtnUnchecked);
+    const [myDonateStyle, setMyDonateStyle] = useState(creditStyle.donateBtnUnchecked);
 
-    const donateBtnStyle=(isValid)=>{
-        if(isValid)
-        setMyDonateStyle(creditStyle.donateBtn);
+    const donateBtnStyle = (isValid) => {
+        if (isValid)
+            setMyDonateStyle(creditStyle.donateBtn);
         else
-        setMyDonateStyle(creditStyle.donateBtnUnchecked);
+            setMyDonateStyle(creditStyle.donateBtnUnchecked);
     }
-    
+
     const [isUS, setUS] = useState(false);
     const showState = (value) => {
         if (value === "United States")
@@ -144,8 +159,12 @@ function CreditDesktop() {
                 <Image source={amex} style={creditStyle.icons} />
             </View>
 
+            <Elements stripe={stripePromise}>
+                <CheckoutForm />
+            </Elements>
+
             <Formik
-                initialValues={{ CardNo: '', ExpiryDate: '', SecurityCode: '', DonorName: '', Country: '', FirstName: '', LastName: '', State: '', City: '', ZipCode: '', Address: '', Email: '', Message: '' }}
+                initialValues={{ CardNo: '', ExpiryDate: '', SecurityCode: '', DonorName: '', Country: '', FirstName: '', LastName: '', State: '', City: '', ZipCode: '', Address: '', Email: '', Message: '', DonationAmmount: otherAmmount, }}
                 validationSchema={ReviewSchema}
                 validateOnMount
                 onSubmit={(values, actions) => {
@@ -154,6 +173,7 @@ function CreditDesktop() {
                 {(props) => (
                     <View onPress={showState(props.values.Country)} onChangeText={donateBtnStyle(props.isValid)}>
                         <Text style={creditStyle.body}>Please note your card information is not held on our site, it is processed securely using the Salsa Labs gateway. </Text>
+                        <Text style={[creditStyle.errors, { marginStart: 0 }]}>{props.errors.DonationAmmount}</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <View>
                                 <Text style={creditStyle.boxDescription}>16-DIGIT CARD NO.</Text>
@@ -325,7 +345,16 @@ function CreditDesktop() {
                             </TouchableOpacity>
                             <Text style={[creditStyle.body, { marginStart: 20, marginTop: 30 }]}>Please keep me updated with news from Lebanese Solidarity </Text>
                         </View>
-                        <TouchableOpacity CardNo='Submit' disabled={!props.isValid} onPress={props.handleSubmit} style={myDonateStyle}>DONATE NOW</TouchableOpacity>
+                        <TouchableOpacity CardNo='Submit' disabled={!props.isValid} onPress={props.handleSubmit} style={myDonateStyle}>
+                            <Link to={{
+                                pathname: '/thankyou',
+                                state: { email: props.values.Email }
+                            }} style={{ textDecoration: "none", width: "100%", }} onClick={() => { setTimeout(function () { window.location.reload() }, 5); }}>
+                                <Text style={{ color: "white", fontFamily: 'futura-condensed-bold', fontSize: 40 }}>
+                                    DONATE NOW
+                                    </Text>
+                            </Link>
+                        </TouchableOpacity>
                         <Text style={[creditStyle.body, { width: 722, marginTop: 30 }]}>Lebanese Solidarity is a 501(c)(3) charitable organisation and charitable contributions are tax-deductible. For any enquires please contact{" "}
                             <TouchableOpacity onPress={() => { Linking.openURL('mailto:INFO@SOLIDARITY.ORG') }} >
                                 <Text style={{ textDecorationLine: "underline" }}>info@lebanesesolidarity.org</Text>

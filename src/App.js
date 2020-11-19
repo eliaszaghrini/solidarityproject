@@ -80,6 +80,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={FrontPageDesktop} exact />
                 <Route path="/programs" component={ThankYouPageDesktop} />
+                <Route path="/thankyou" component={ThankYouPageDesktop}/>
                 <Route path="/donate" component={DonatePageDesktop} />
                 <Route component={NotFound} /></Switch>
             </div>
